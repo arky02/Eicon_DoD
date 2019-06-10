@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -78,17 +77,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.n_profile) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.n_keyboard) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.n_view_graph) {
 
-        } else if (id == R.id.nav_tools) {
+        } else if (id == R.id.n_setting) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.n_send) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.n_logout) {
 
         }
 
