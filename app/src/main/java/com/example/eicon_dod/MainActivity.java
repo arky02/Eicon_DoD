@@ -1,5 +1,6 @@
 package com.example.eicon_dod;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.n_profile) {
-            // Handle the camera action
+            Intent intent = new Intent(getApplicationContext(),Profile.class);
         } else if (id == R.id.n_keyboard) {
 
         } else if (id == R.id.n_view_graph) {
