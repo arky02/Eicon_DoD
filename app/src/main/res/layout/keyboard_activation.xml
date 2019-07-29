@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingActivity">
+    tools:context=".KeyboardActivation">
 
     <TextView
         android:id="@+id/textView16"
@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="DoD Keyboard Setting"
-        android:textColor="#FC8C94"
+        android:textColor="#617FCA"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Follow our steps to analyze your language habits!\n You could easily apply DoD Keyboard on your phone"
+        android:text="Follow our steps to analyze your language habits\n You can easily apply DoD Keyboard on your phone!"
         android:textAlignment="center"
         android:textSize="14sp"
         android:textColor="#707070"
@@ -72,7 +72,7 @@
 
         android:text="Step 3. Test DoD Keyboard!"
         android:textAlignment="center"
-        android:textColor="#FF7A83"
+        android:textColor="#FF617FCA"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
         android:layout_marginTop="8dp"
         android:text="Step 2. Choose to use DoD Keyboard!"
         android:textAlignment="center"
-        android:textColor="#FF7A83"
+        android:textColor="#FF617FCA"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
         android:layout_marginTop="8dp"
         android:text="Step 1. Activate DoD Keyboard!"
         android:textAlignment="center"
-        android:textColor="#FF7A83"
+        android:textColor="#FF617FCA"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +130,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#FC8C94"
+        android:backgroundTint="#FF617FCA"
         android:gravity="center"
         android:text="          Activate Keyboard          "
         android:textColor="#FFFFFF"
@@ -150,7 +150,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#FC8C94"
+        android:backgroundTint="#FF617FCA"
         android:gravity="center"
         android:text="           Choode Keyboard           "
         android:textColor="#FFFFFF"
@@ -193,7 +193,7 @@
         android:layout_marginTop="8dp"
         android:background="#00ffffff"
         android:text="END SETTING >>"
-        android:textColor="#FC8C94"
+        android:textColor="#FF617FCA"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -203,4 +203,4 @@
         app:layout_constraintVertical_bias="1.0" />
     <!--android:fontFamily="@font/nanumsquarer"-->
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

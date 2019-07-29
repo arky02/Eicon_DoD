@@ -3,4 +3,8 @@
     <color name="colorPrimary">#385A9C</color>
     <color name="colorPrimaryDark">#3A4B8F</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="candidate_normal">#FF000000</color>
+    <color name="candidate_recommended">#000000</color>
+    <color name="candidate_other">#ff808080</color>
+    <color name="candidate_background">#bbffffff</color>
 </resources>

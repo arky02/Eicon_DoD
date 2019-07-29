@@ -1,13 +1,13 @@
 package com.example.eicon_dod;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SettingActivity extends AppCompatActivity {
+public class KeyboardModification extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_keyboard_modification);
     }
 }

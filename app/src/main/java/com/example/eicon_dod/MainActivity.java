@@ -1,18 +1,22 @@
 package com.example.eicon_dod;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,11 +84,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.n_profile) {
             Intent intent = new Intent(getApplicationContext(),Profile.class);
+            startActivity(intent);
         } else if (id == R.id.n_keyboard) {
+            Intent keyintent = new Intent(getApplicationContext(),KeyboardActivation.class);
+            startActivity(keyintent);
 
         } else if (id == R.id.n_view_graph) {
 
         } else if (id == R.id.n_setting) {
+            Intent setintent = new Intent(getApplicationContext(),KeyboardModification.class);
+            startActivity(setintent);
 
         } else if (id == R.id.n_send) {
 

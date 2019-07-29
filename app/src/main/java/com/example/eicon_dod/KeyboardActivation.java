@@ -4,20 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
-public class KeyboardSetting extends AppCompatActivity {
+public class KeyboardActivation extends AppCompatActivity {
 
     Button btStep1, btStep2, btEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.keyboard_setting);
+        setContentView(R.layout.keyboard_activation);
 
         btStep1 = (Button) findViewById(R.id.bt_step_1);
         btStep2 = (Button) findViewById(R.id.bt_step_2);

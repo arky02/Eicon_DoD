@@ -3,8 +3,8 @@ package com.example.eicon_dod.customkeyboard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-
-import com.android.inputmethodcommon.InputMethodSettingsFragment;
+import com.example.eicon_dod.R;
+import com.example.eicon_dod.android.inputmethodcommon.InputMethodSettingsFragment;
 
 /**
  * Displays the IME preferences inside the input method setting.
@@ -30,6 +30,7 @@ public class ImePreferences extends PreferenceActivity {
     protected boolean isValidFragment(final String fragmentName) {
         return Settings.class.getName().equals(fragmentName);
     }
+
 
     public static class Settings extends InputMethodSettingsFragment {
         @Override
