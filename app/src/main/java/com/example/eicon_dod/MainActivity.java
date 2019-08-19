@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.eicon_dod.Database.AppDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "main").build();
     }
 
     @Override
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(keyboardIntent);
                 break;
             case R.id.n_view_graph:
+                Intent graphIntent = new Intent(getApplicationContext(), GraphActivity.class);
+                startActivity(graphIntent);
                 break;
             case R.id.n_setting:
                 Intent settingIntent = new Intent(getApplicationContext(), KeyboardModification.class);
