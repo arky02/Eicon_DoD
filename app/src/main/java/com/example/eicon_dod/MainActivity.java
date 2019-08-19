@@ -12,15 +12,13 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
 import android.view.View;
 import android.view.MenuItem;
 import android.view.Menu;
 
 
-
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,26 +77,26 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.n_profile) {
-            Intent intent = new Intent(getApplicationContext(),Profile.class);
-            startActivity(intent);
-        } else if (id == R.id.n_keyboard) {
-            Intent keyintent = new Intent(getApplicationContext(),KeyboardActivation.class);
-            startActivity(keyintent);
-
-        } else if (id == R.id.n_view_graph) {
-
-        } else if (id == R.id.n_setting) {
-            Intent setintent = new Intent(getApplicationContext(),KeyboardModification.class);
-            startActivity(setintent);
-
-        } else if (id == R.id.n_send) {
-
-        } else if (id == R.id.n_logout) {
-
+        switch (id) {
+            case R.id.n_profile:
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                startActivity(intent);
+                break;
+            case R.id.n_keyboard:
+                Intent keyboardIntent = new Intent(getApplicationContext(), KeyboardActivation.class);
+                startActivity(keyboardIntent);
+                break;
+            case R.id.n_view_graph:
+                break;
+            case R.id.n_setting:
+                Intent settingIntent = new Intent(getApplicationContext(), KeyboardModification.class);
+                startActivity(settingIntent);
+                break;
+            case R.id.n_send:
+                break;
+            case R.id.n_logout:
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
