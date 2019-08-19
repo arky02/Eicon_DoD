@@ -70,6 +70,7 @@ public class Service_checkpermission extends AppCompatActivity {
             startService(new Intent(getApplicationContext(), MyService.class));
         }
     }
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
