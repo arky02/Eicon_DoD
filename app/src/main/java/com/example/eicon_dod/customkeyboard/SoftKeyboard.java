@@ -39,7 +39,6 @@ import android.view.textservice.SpellCheckerSession;
 import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 import android.view.textservice.TextServicesManager;
-import android.widget.TextView;
 
 import com.example.eicon_dod.R;
 
@@ -69,8 +68,8 @@ public class SoftKeyboard extends InputMethodService
 
     private InputMethodManager mInputMethodManager;
 
-    private LatinKeyboardView mInputView;
-    private CandidateView mCandidateView;
+    private com.example.eicon_dod.customkeyboard.LatinKeyboardView mInputView;
+    private com.example.eicon_dod.customkeyboard.CandidateView mCandidateView;
     private CompletionInfo[] mCompletions;
 
     private StringBuilder mComposing = new StringBuilder();
@@ -81,16 +80,17 @@ public class SoftKeyboard extends InputMethodService
     private long mLastShiftTime;
     private long mMetaState;
 
-    private LatinKeyboard mSymbolsKeyboard;
-    private LatinKeyboard mSymbolsShiftedKeyboard;
-    private LatinKeyboard mQwertyKeyboard;
+    private com.example.eicon_dod.customkeyboard.LatinKeyboard mSymbolsKeyboard;
+    private com.example.eicon_dod.customkeyboard.LatinKeyboard mSymbolsShiftedKeyboard;
+    private com.example.eicon_dod.customkeyboard.LatinKeyboard mQwertyKeyboard;
 
-    private LatinKeyboard mCurKeyboard;
+    private com.example.eicon_dod.customkeyboard.LatinKeyboard mCurKeyboard;
 
     private String mWordSeparators;
 
     private SpellCheckerSession mScs;
     private List<String> mSuggestions;
+
 
 
     /**
@@ -119,9 +119,9 @@ public class SoftKeyboard extends InputMethodService
             if (displayWidth == mLastDisplayWidth) return;
             mLastDisplayWidth = displayWidth;
         }
-        mQwertyKeyboard = new LatinKeyboard(this, R.xml.qwerty);
-        mSymbolsKeyboard = new LatinKeyboard(this, R.xml.symbols);
-        mSymbolsShiftedKeyboard = new LatinKeyboard(this, R.xml.symbols_shift);
+        mQwertyKeyboard = new com.example.eicon_dod.customkeyboard.LatinKeyboard(this, R.xml.qwerty);
+        mSymbolsKeyboard = new com.example.eicon_dod.customkeyboard.LatinKeyboard(this, R.xml.symbols);
+        mSymbolsShiftedKeyboard = new com.example.eicon_dod.customkeyboard.LatinKeyboard(this, R.xml.symbols_shift);
     }
 
     /**
@@ -131,7 +131,7 @@ public class SoftKeyboard extends InputMethodService
      * a configuration change.
      */
     @Override public View onCreateInputView() {
-        mInputView = (LatinKeyboardView) getLayoutInflater().inflate(
+        mInputView = (com.example.eicon_dod.customkeyboard.LatinKeyboardView) getLayoutInflater().inflate(
                 R.layout.input, null);
         mInputView.setOnKeyboardActionListener(this);
         mInputView.setPreviewEnabled(false);
@@ -139,7 +139,7 @@ public class SoftKeyboard extends InputMethodService
         return mInputView;
     }
 
-    private void setLatinKeyboard(LatinKeyboard nextKeyboard) {
+    private void setLatinKeyboard(com.example.eicon_dod.customkeyboard.LatinKeyboard nextKeyboard) {
         final boolean shouldSupportLanguageSwitchKey =
                 mInputMethodManager.shouldOfferSwitchingToNextInputMethod(getToken());
         nextKeyboard.setLanguageSwitchKeyVisibility(shouldSupportLanguageSwitchKey);
@@ -151,7 +151,7 @@ public class SoftKeyboard extends InputMethodService
      * be generated, like {@link #onCreateInputView}.
      */
     @Override public View onCreateCandidatesView() {
-        mCandidateView = new CandidateView(this);
+        mCandidateView = new com.example.eicon_dod.customkeyboard.CandidateView(this);
         mCandidateView.setService(this);
         return mCandidateView;
     }
@@ -541,10 +541,10 @@ public class SoftKeyboard extends InputMethodService
         } else if (primaryCode == Keyboard.KEYCODE_CANCEL) {
             handleClose();
             return;
-        } else if (primaryCode == LatinKeyboardView.KEYCODE_LANGUAGE_SWITCH) {
+        } else if (primaryCode == com.example.eicon_dod.customkeyboard.LatinKeyboardView.KEYCODE_LANGUAGE_SWITCH) {
             handleLanguageSwitch();
             return;
-        } else if (primaryCode == LatinKeyboardView.KEYCODE_OPTIONS) {
+        } else if (primaryCode == com.example.eicon_dod.customkeyboard.LatinKeyboardView.KEYCODE_OPTIONS) {
             // Show a menu or somethin'
         } else if (primaryCode == Keyboard.KEYCODE_MODE_CHANGE
                 && mInputView != null) {
@@ -581,8 +581,8 @@ public class SoftKeyboard extends InputMethodService
         if (!mCompletionOn) {
             if (mComposing.length() > 0) {
                 ArrayList<String> list = new ArrayList<String>();
-                //list.add(mComposing.toString());
-                Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
+                list.add(mComposing.toString());
+                //Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
                 mScs.getSentenceSuggestions(new TextInfo[] {new TextInfo(mComposing.toString())}, 5);
                 setSuggestions(list, true, true);
             } else {
