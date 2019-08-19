@@ -3,8 +3,8 @@
     package="com.example.eicon_dod">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission." />
     <uses-permission android:name="android.permission.ACTION_MANAGE_OVERLAY_PERMISSION" />
+
 
     <application
         android:allowBackup="true"
