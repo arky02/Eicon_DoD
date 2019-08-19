@@ -45,6 +45,7 @@ import com.example.eicon_dod.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Example of writing an input method for a soft keyboard.  This code is
@@ -103,7 +104,8 @@ public class SoftKeyboard extends InputMethodService
         mWordSeparators = getResources().getString(R.string.word_separators);
         final TextServicesManager tsm = (TextServicesManager) getSystemService(
                 Context.TEXT_SERVICES_MANAGER_SERVICE);
-        mScs = tsm.newSpellCheckerSession(null, null, this, true);
+        assert tsm != null;
+        mScs = tsm.newSpellCheckerSession(null, Locale.ENGLISH, this, true);
     }
 
     /**
@@ -578,16 +580,9 @@ public class SoftKeyboard extends InputMethodService
      * candidates.
      */
     private void updateCandidates() {
-        if (!mCompletionOn) {
-            if (mComposing.length() > 0) {
-                ArrayList<String> list = new ArrayList<String>();
-                //list.add(mComposing.toString());
-                Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
-                mScs.getSentenceSuggestions(new TextInfo[] {new TextInfo(mComposing.toString())}, 5);
-                setSuggestions(list, true, true);
-            } else {
+        if (mCompletionOn) {
                 setSuggestions(null, false, false);
-            }
+
         }
     }
 
