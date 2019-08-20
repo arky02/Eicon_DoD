@@ -13,11 +13,16 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MyService extends Service {
+import static com.example.eicon_dod.customkeyboard.SoftKeyboard.isOkay;
+import static com.example.eicon_dod.customkeyboard.SoftKeyboard.meaning_badword;
+import static com.example.eicon_dod.customkeyboard.SoftKeyboard.word_bad;
+
+public class SpeechBubble_service extends Service {
 
     WindowManager wm;
     View mView;
     String bad_word;
+    String badWord_meaning;
     Boolean is_first = true;
 
     @Override
@@ -30,8 +35,11 @@ public class MyService extends Service {
         super.onCreate();
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
-        bad_word = "man up";
 
+        if(isOkay) {
+            bad_word = word_bad;
+            badWord_meaning = meaning_badword;
+        }
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 /*ViewGroup.LayoutParams.MATCH_PARENT*/300,
@@ -48,20 +56,16 @@ public class MyService extends Service {
         final TextView textView = (TextView) mView.findViewById(R.id.textView);
         textView.setText(" \"" + bad_word + "\" " + "is a bad word! ");
         final Button bt = mView.findViewById(R.id.bt);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bt.setOnClickListener(view -> {
                 if (is_first) {
-                    textView.setText("Telling someone to “man up” means what you're actually saying is that “being a man” means being “strong”, fearless and confident. You’re saying that men should not show and feel (perfectly normal) emotions. You’re in fact discouraging a sense of positive masculinity and declaring that women are instead weak, over-emotional, scared and un-daring!");
+                    textView.setText(badWord_meaning);
                     is_first = false;
                     bt.setText("Okay! I'll Change");
                     bt.setTextColor(getResources().getColor(android.R.color.black));
                 } else {
-                    stopService(new Intent(getApplicationContext(), MyService.class));
+                    stopService(new Intent(getApplicationContext(), SpeechBubble_service.class));
                     bt.setTextColor(getResources().getColor(android.R.color.white));
                 }
-
-            }
         });
         wm.addView(mView, params);
     }

@@ -14,9 +14,12 @@ import android.widget.Button;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Service_checkpermission extends AppCompatActivity {
+import static com.example.eicon_dod.customkeyboard.SoftKeyboard.isOkay;
+
+public class SpeechBubble_checkpermission extends AppCompatActivity {
 
     public Context context;
+    public static boolean isPermissionOkay = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,20 +27,26 @@ public class Service_checkpermission extends AppCompatActivity {
         setContentView(R.layout.activity_service_checkpermission);
         context = getApplicationContext();
 
-        Button bt_stop = (Button) findViewById(R.id.bt_stop);
-        bt_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stopService(new Intent(getApplicationContext(), MyService.class));
-            }
-        });
-        Button bt_start = findViewById(R.id.bt_start);
-        bt_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                overlayPermission();
-            }
-        });
+        overlayPermission();
+
+//        if(isOkay) {
+//            overlayPermission();
+////
+////            Button bt_stop = (Button) findViewById(R.id.bt_stop);
+//            bt_stop.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    stopService(new Intent(getApplicationContext(), SpeechBubble_service.class));
+//                }
+//            });
+//            Button bt_start = findViewById(R.id.bt_start);
+//            bt_start.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    overlayPermission();
+//                }
+//            });
+//        }
     }
 
     public void overlayPermission() {
@@ -66,8 +75,15 @@ public class Service_checkpermission extends AppCompatActivity {
             startActivityForResult(intent, REQUEST_CODE); //It will call onActivityResult Function After you press Yes/No and go Back after giving permission
         } else {
             Log.v("App", "We already have permission for it.");
-            // Do your stuff, we got permission captain
-            startService(new Intent(getApplicationContext(), MyService.class));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.canDrawOverlays(this)) {
+                    // Permission Granted by Overlay
+                    // Do your Stuff
+                    isPermissionOkay = true;
+                    Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(mintent);
+                }
+            }
         }
     }
 
@@ -78,14 +94,17 @@ public class Service_checkpermission extends AppCompatActivity {
         Log.v("App", "OnActivity Result.");
         //check if received result code
         //  is equal our requested code for draw permission
-        if (requestCode == REQUEST_CODE) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (Settings.canDrawOverlays(this)) {
-                    // Permission Granted by Overlay
-                    // Do your Stuff
-                    startService(new Intent(getApplicationContext(), MyService.class));
+
+            if (requestCode == REQUEST_CODE) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (Settings.canDrawOverlays(this)) {
+                        // Permission Granted by Overlay
+                        // Do your Stuff
+                        isPermissionOkay = true;
+                        Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(mintent);
+                    }
                 }
             }
-        }
     }
 }

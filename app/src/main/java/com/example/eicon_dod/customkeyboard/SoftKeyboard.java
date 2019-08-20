@@ -18,6 +18,7 @@ package com.example.eicon_dod.customkeyboard;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -37,12 +38,13 @@ import android.view.inputmethod.InputMethodSubtype;
 import android.view.textservice.SentenceSuggestionsInfo;
 import android.view.textservice.SpellCheckerSession;
 import android.view.textservice.SuggestionsInfo;
-import android.view.textservice.TextInfo;
 import android.view.textservice.TextServicesManager;
-import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.eicon_dod.SpeechBubble_checkpermission;
 import com.example.eicon_dod.R;
+import com.example.eicon_dod.SpeechBubble_service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +72,7 @@ import static com.example.eicon_dod.Data_meanings.sis;
 import static com.example.eicon_dod.Data_meanings.tranny;
 import static com.example.eicon_dod.Data_meanings.uppityy;
 import static com.example.eicon_dod.Data_meanings.whi;
+import static com.example.eicon_dod.SpeechBubble_checkpermission.isPermissionOkay;
 
 /**
  * Example of writing an input method for a soft keyboard.  This code is
@@ -81,7 +84,7 @@ import static com.example.eicon_dod.Data_meanings.whi;
 public class SoftKeyboard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener, SpellCheckerSession.SpellCheckerSessionListener {
     static final boolean DEBUG = false;
-    boolean isMatched = false;
+
 
     /**
      * This boolean indicates the optional example code for performing
@@ -92,6 +95,10 @@ public class SoftKeyboard extends InputMethodService
      * that are primarily intended to be used for on-screen text entry.
      */
     static final boolean PROCESS_HARD_KEYS = true;
+    public static String meaning_badword;
+    public static String word_bad;
+    public static boolean isOkay = false;
+    public static boolean isTextReady = false;
 
     private InputMethodManager mInputMethodManager;
 
@@ -574,20 +581,24 @@ public class SoftKeyboard extends InputMethodService
                 String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind};
                 for(int i =0 ; i< bad_word.length; i++){
                     if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
-                        String meaning_badword = word_meaning[i];
-                        String word_bad = bad_word[i];
+                        meaning_badword = word_meaning[i];
+                        word_bad = bad_word[i];
 
                         Log.d("meaning_badword ", meaning_badword );
                         Log.d("word_bad ",word_bad );
 
+                        //TODO: we need to upload timestamp and word(word_bad) here
+
+                        isOkay = true;
+
+                        if(isPermissionOkay) {
+                            startService(new Intent(getApplicationContext(), SpeechBubble_service.class));
+                        }else{
+                            Toast.makeText(this, "다른 앱 위에 표시되는 앱 사용 권한을 수락해야 합니다", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-
-
                 Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
-
-
-
                 commitTyped(getCurrentInputConnection());
 
 
