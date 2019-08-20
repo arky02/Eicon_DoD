@@ -574,42 +574,42 @@ public class SoftKeyboard extends InputMethodService
     // Implementation of KeyboardViewListener
 
     public void onKey(int primaryCode, int[] keyCodes) {
-        Log.d("Test","KEYCODE: " + primaryCode);
+        Log.d("Test", "KEYCODE: " + primaryCode);
         if (isWordSeparator(primaryCode)) {
             // Handle separator
             if (mComposing.length() > 0) {
                 //TODO 단어
 
-                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind"};
-                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind};
-                for(int i =0 ; i< bad_word.length; i++){
-                    if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
+                String bad_word[] = {"sissy", "maiden", "whipped", "jipped", "gypped", "bugger", "lame", "retarded", "colored", "OCD", "derp", "crazy", "insane", "tranny", "exotic", "ghetto", "uppity", "miss", "mrs", "chairman", "clergyman", "foreman", "mankind"};
+                String word_meaning[] = {sis, mai, whi, jipgyp, jipgyp, bug, Lame, Retarded, colored, OCD, Derp, crazy, insane, tranny, exotic, ghetto, uppityy, miss, mrs, chairman, clergyman, foreman, mankind};
+                for (int i = 0; i < bad_word.length; i++) {
+                    if (mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0) {
                         meaning_badword = word_meaning[i];
                         word_bad = bad_word[i];
 
-                        Log.d("meaning_badword ", meaning_badword );
-                        Log.d("word_bad ",word_bad );
-                        
+                        Log.d("meaning_badword ", meaning_badword);
+                        Log.d("word_bad ", word_bad);
+
                         AppDatabase db = AppDatabase.getInstance(this);
                         Data data = new Data(new Timestamp(System.currentTimeMillis()), word_bad);
                         db.dataDAO().insertData(data);
 
                         isOkay = true;
 
-                        if(isPermissionOkay) {
+                        if (isPermissionOkay) {
                             startService(new Intent(getApplicationContext(), SpeechBubble_service.class));
-                        }else{
+                        } else {
                             Toast.makeText(this, "다른 앱 위에 표시되는 앱 사용 권한을 수락해야 합니다", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
-                Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
+                Log.e("Test", "KEYBOARDWORD: " + mComposing.toString());
                 commitTyped(getCurrentInputConnection());
 
 
             }
             sendKey(primaryCode);
-            
+
             updateShiftKeyState(getCurrentInputEditorInfo());
         } else if (primaryCode == Keyboard.KEYCODE_DELETE) {
             handleBackspace();
@@ -642,7 +642,7 @@ public class SoftKeyboard extends InputMethodService
         if (ic == null) return;
         ic.beginBatchEdit();
         if (mComposing.length() > 0) {
-           // Log.d("KEYBOARDTEXT",toString(mComposing));
+            // Log.d("KEYBOARDTEXT",toString(mComposing));
             commitTyped(ic);
         }
         ic.commitText(text, 0);
@@ -657,8 +657,8 @@ public class SoftKeyboard extends InputMethodService
      */
     private void updateCandidates() {
         if (!mCompletionOn) {
-                setSuggestions(null, false, false);
-            }
+            setSuggestions(null, false, false);
+        }
 
     }
 
@@ -726,7 +726,7 @@ public class SoftKeyboard extends InputMethodService
         } else {
             getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1);
 
-           // Log.d("handleCharacter",getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1));
+            // Log.d("handleCharacter",getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1));
         }
     }
 
@@ -768,7 +768,7 @@ public class SoftKeyboard extends InputMethodService
 
     public boolean isWordSeparator(int code) {
         String separators = getWordSeparators();
-        return separators.contains(String.valueOf((char)code));
+        return separators.contains(String.valueOf((char) code));
     }
 
     public void pickDefaultCandidate() {
@@ -820,8 +820,10 @@ public class SoftKeyboard extends InputMethodService
     public void onRelease(int primaryCode) {
 
     }
+
     /**
      * http://www.tutorialspoint.com/android/android_spelling_checker.htm
+     *
      * @param results results
      */
     @Override
@@ -841,6 +843,7 @@ public class SoftKeyboard extends InputMethodService
         }
         Log.d("SoftKeyboard", "SUGGESTIONS: " + sb.toString());
     }
+
     private static final int NOT_A_LENGTH = -1;
 
     private void dumpSuggestionsInfoInternal(

@@ -95,16 +95,16 @@ public class SpeechBubble_checkpermission extends AppCompatActivity {
         //check if received result code
         //  is equal our requested code for draw permission
 
-            if (requestCode == REQUEST_CODE) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (Settings.canDrawOverlays(this)) {
-                        // Permission Granted by Overlay
-                        // Do your Stuff
-                        isPermissionOkay = true;
-                        Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(mintent);
-                    }
+        if (requestCode == REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.canDrawOverlays(this)) {
+                    // Permission Granted by Overlay
+                    // Do your Stuff
+                    isPermissionOkay = true;
+                    Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(mintent);
                 }
             }
+        }
     }
 }

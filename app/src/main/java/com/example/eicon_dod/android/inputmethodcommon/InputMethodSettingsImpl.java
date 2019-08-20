@@ -52,7 +52,8 @@ import java.util.List;
 
     /**
      * Initialize internal states of this object.
-     * @param context the context for this application.
+     *
+     * @param context    the context for this application.
      * @param prefScreen a PreferenceScreen of PreferenceActivity or PreferenceFragment.
      * @return true if this application is an IME and has two or more subtypes, false otherwise.
      */
@@ -114,6 +115,7 @@ import java.util.List;
         }
         return sb.toString();
     }
+
     /**
      * {@inheritDoc}
      */

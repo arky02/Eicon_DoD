@@ -84,6 +84,7 @@ public class LatinKeyboard extends Keyboard {
 
     /**
      * Dynamically change the visibility of the language switch key (a.k.a. globe key).
+     *
      * @param visible True if the language switch key should be visible.
      */
     void setLanguageSwitchKeyVisibility(boolean visible) {
@@ -114,7 +115,7 @@ public class LatinKeyboard extends Keyboard {
             return;
         }
 
-        switch (options&(EditorInfo.IME_MASK_ACTION|EditorInfo.IME_FLAG_NO_ENTER_ACTION)) {
+        switch (options & (EditorInfo.IME_MASK_ACTION | EditorInfo.IME_FLAG_NO_ENTER_ACTION)) {
             case EditorInfo.IME_ACTION_GO:
                 mEnterKey.iconPreview = null;
                 mEnterKey.icon = null;

@@ -2,7 +2,9 @@ package com.example.eicon_dod;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +13,8 @@ import android.widget.ImageView;
 
 public class Profile extends AppCompatActivity {
 
-    Button btn_save,btn_profile;
-    EditText edt_name,edt_quote,edt_birth;
+    Button btn_save, btn_profile;
+    EditText edt_name, edt_quote, edt_birth;
     ImageView img_profile;
     SharedPreferences sharedPreferences;
 
@@ -31,13 +33,13 @@ public class Profile extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile",MODE_PRIVATE);
+                sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile", MODE_PRIVATE);
                 SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.putString(edt_name.getText().toString(),"name");
-                edit.putString(edt_quote.getText().toString(),"quote");
-                edit.putString(edt_birth.getText().toString(),"birth");
+                edit.putString(edt_name.getText().toString(), "name");
+                edit.putString(edt_quote.getText().toString(), "quote");
+                edit.putString(edt_birth.getText().toString(), "birth");
                 edit.commit();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
         });

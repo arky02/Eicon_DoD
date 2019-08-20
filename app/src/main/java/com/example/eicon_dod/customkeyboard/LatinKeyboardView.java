@@ -57,7 +57,7 @@ public class LatinKeyboardView extends KeyboardView {
     }
 
     void setSubtypeOnSpaceKey(final InputMethodSubtype subtype) {
-        final com.example.eicon_dod.customkeyboard.LatinKeyboard keyboard = (com.example.eicon_dod.customkeyboard.LatinKeyboard)getKeyboard();
+        final com.example.eicon_dod.customkeyboard.LatinKeyboard keyboard = (com.example.eicon_dod.customkeyboard.LatinKeyboard) getKeyboard();
         //keyboard.setSpaceIcon(getResources().getDrawable(subtype.getIconResId()));
         invalidateAllKeys();
     }
@@ -72,8 +72,8 @@ public class LatinKeyboardView extends KeyboardView {
         paint.setColor(Color.LTGRAY);
 
         List<Key> keys = getKeyboard().getKeys();
-        for(Key key: keys) {
-            if(key.label != null) {
+        for (Key key : keys) {
+            if (key.label != null) {
                 if (key.label.equals("q")) {
                     canvas.drawText("1", key.x + (key.width - 25), key.y + 40, paint);
                 } else if (key.label.equals("w")) {
