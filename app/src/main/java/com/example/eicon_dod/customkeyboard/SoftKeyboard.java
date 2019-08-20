@@ -572,13 +572,14 @@ public class SoftKeyboard extends InputMethodService
 
                 String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind"};
                 String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind};
-                for(int i =0 ; i<=bad_word.length; i++){
+                for(int i =0 ; i< bad_word.length; i++){
                     if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
                         String meaning_badword = word_meaning[i];
                         String word_bad = bad_word[i];
 
                         Log.d("meaning_badword ", meaning_badword );
                         Log.d("word_bad ",word_bad );
+
                     }
                 }
 
