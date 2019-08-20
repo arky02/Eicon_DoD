@@ -532,7 +532,13 @@ public class SoftKeyboard extends InputMethodService
         if (isWordSeparator(primaryCode)) {
             // Handle separator
             if (mComposing.length() > 0) {
+                //TODO 단어
+                Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
+
+
                 commitTyped(getCurrentInputConnection());
+
+
             }
             sendKey(primaryCode);
             
@@ -568,6 +574,7 @@ public class SoftKeyboard extends InputMethodService
         if (ic == null) return;
         ic.beginBatchEdit();
         if (mComposing.length() > 0) {
+           // Log.d("KEYBOARDTEXT",toString(mComposing));
             commitTyped(ic);
         }
         ic.commitText(text, 0);
@@ -582,16 +589,9 @@ public class SoftKeyboard extends InputMethodService
      */
     private void updateCandidates() {
         if (!mCompletionOn) {
-            if (mComposing.length() > 0) {
-                ArrayList<String> list = new ArrayList<String>();
-                list.add(mComposing.toString());
-                //Log.d("SoftKeyboard", "REQUESTING: " + mComposing.toString());
-                mScs.getSentenceSuggestions(new TextInfo[] {new TextInfo(mComposing.toString())}, 5);
-                setSuggestions(list, true, true);
-            } else {
                 setSuggestions(null, false, false);
             }
-        }
+
     }
 
     public void setSuggestions(List<String> suggestions, boolean completions,
@@ -656,8 +656,9 @@ public class SoftKeyboard extends InputMethodService
             updateShiftKeyState(getCurrentInputEditorInfo());
             updateCandidates();
         } else {
-            getCurrentInputConnection().commitText(
-                    String.valueOf((char) primaryCode), 1);
+            getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1);
+
+           // Log.d("handleCharacter",getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1));
         }
     }
 
