@@ -171,6 +171,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="14"
+        android:id="@+id/editText"
         android:hint="Is it work well?"
         android:textAlignment="center"
         android:textColor="#939191"

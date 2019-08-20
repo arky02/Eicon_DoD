@@ -39,11 +39,13 @@ import android.view.textservice.SpellCheckerSession;
 import android.view.textservice.SuggestionsInfo;
 import android.view.textservice.TextInfo;
 import android.view.textservice.TextServicesManager;
+import android.widget.TextView;
 
 import com.example.eicon_dod.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Example of writing an input method for a soft keyboard.  This code is
@@ -92,7 +94,6 @@ public class SoftKeyboard extends InputMethodService
     private List<String> mSuggestions;
 
 
-
     /**
      * Main initialization of the input method component.  Be sure to call
      * to super class.
@@ -103,7 +104,8 @@ public class SoftKeyboard extends InputMethodService
         mWordSeparators = getResources().getString(R.string.word_separators);
         final TextServicesManager tsm = (TextServicesManager) getSystemService(
                 Context.TEXT_SERVICES_MANAGER_SERVICE);
-        mScs = tsm.newSpellCheckerSession(null, null, this, true);
+        assert tsm != null;
+        mScs = tsm.newSpellCheckerSession(null, Locale.ENGLISH, this, true);
     }
 
     /**

@@ -5,22 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.eicon_dod.Database.AppDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
 import android.view.View;
 import android.view.MenuItem;
 import android.view.Menu;
 
 
-
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "DoD Keyboard Applicated", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "DoD Keyboard Initialized", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "main").build();
     }
 
     @Override
@@ -76,29 +77,30 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.n_profile) {
-            Intent intent = new Intent(getApplicationContext(),Profile.class);
-            startActivity(intent);
-        } else if (id == R.id.n_keyboard) {
-            Intent keyintent = new Intent(getApplicationContext(),KeyboardActivation.class);
-            startActivity(keyintent);
-
-        } else if (id == R.id.n_view_graph) {
-
-        } else if (id == R.id.n_setting) {
-            Intent setintent = new Intent(getApplicationContext(),KeyboardModification.class);
-            startActivity(setintent);
-
-        } else if (id == R.id.n_send) {
-
-        } else if (id == R.id.n_logout) {
-
+        switch (id) {
+            case R.id.n_profile:
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                startActivity(intent);
+                break;
+            case R.id.n_keyboard:
+                Intent keyboardIntent = new Intent(getApplicationContext(), KeyboardActivation.class);
+                startActivity(keyboardIntent);
+                break;
+            case R.id.n_view_graph:
+                Intent graphIntent = new Intent(getApplicationContext(), GraphActivity.class);
+                startActivity(graphIntent);
+                break;
+            case R.id.n_setting:
+                Intent settingIntent = new Intent(getApplicationContext(), KeyboardModification.class);
+                startActivity(settingIntent);
+                break;
+            case R.id.n_send:
+                break;
+            case R.id.n_logout:
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
