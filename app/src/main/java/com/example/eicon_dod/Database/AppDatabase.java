@@ -1,9 +1,23 @@
 package com.example.eicon_dod.Database;
 
-import androidx.room.Database;
-import androidx.room.RoomDatabase;
+import android.content.Context;
 
-@Database(entities = {Data.class}, version = 1)
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
+
+@Database(entities = {Data.class}, version = 1, exportSchema = false)
+@TypeConverters({TimestampConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
+    private static AppDatabase instance;
+
+    public static synchronized AppDatabase getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "main").build();
+        }
+        return instance;
+    }
+
     public abstract DataDAO dataDAO();
 }

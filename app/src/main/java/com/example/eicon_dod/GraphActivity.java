@@ -6,9 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+
+import com.example.eicon_dod.Database.AppDatabase;
+import com.example.eicon_dod.Database.Data;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -21,7 +23,9 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GraphActivity extends AppCompatActivity implements
         OnChartGestureListener, OnChartValueSelectedListener {
@@ -29,7 +33,6 @@ public class GraphActivity extends AppCompatActivity implements
     private static final String TAG = "MainActivity";
 
     private LineChart mChart;
-
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -85,7 +88,7 @@ public class GraphActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_graph);
 
         mChart = (LineChart) findViewById(R.id.Linechart);
 
@@ -94,22 +97,6 @@ public class GraphActivity extends AppCompatActivity implements
 
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(false);
-
-
-        /*
-        LimitLine upper_limit = new LimitLine(65f, "Danger");
-        upper_limit.setLineWidth(4f);
-        upper_limit.enableDashedLine(10f, 10f, 0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        upper_limit.setTextSize(15f);
-
-        LimitLine lower_limit = new LimitLine(35f, "Too Low");
-        upper_limit.setLineWidth(4f);
-        upper_limit.enableDashedLine(10f, 10f, 0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        upper_limit.setTextSize(15f);
-        */
-
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.removeAllLimitLines();
@@ -124,27 +111,29 @@ public class GraphActivity extends AppCompatActivity implements
         mChart.getAxisRight().setEnabled(false);
 
 
-
         ArrayList<Entry> yValues = new ArrayList<>();
 
-        //TODO 여기가 데이터 넣는 곳
-        yValues.add(new Entry(1, 50f));
-        yValues.add(new Entry(2, 70f));
-        yValues.add(new Entry(3, 30f));
-        yValues.add(new Entry(4, 50f));
-        yValues.add(new Entry(5, 60f));
-        yValues.add(new Entry(6, 65f));
-        yValues.add(new Entry(7, 55f));
-        //TODO
+        AppDatabase db = AppDatabase.getInstance(this);
+        List<Data> dbData = db.dataDAO().getDataList();
+        List<Data> filteredData = Helper.filterDate(dbData, new Timestamp(System.currentTimeMillis()));
+
+        yValues.add(new Entry(1, Helper.countOccurence(filteredData, "Sun")));
+        yValues.add(new Entry(2, Helper.countOccurence(filteredData, "Mon")));
+        yValues.add(new Entry(3, Helper.countOccurence(filteredData, "Tue")));
+        yValues.add(new Entry(4, Helper.countOccurence(filteredData, "Wed")));
+        yValues.add(new Entry(5, Helper.countOccurence(filteredData, "Thu")));
+        yValues.add(new Entry(6, Helper.countOccurence(filteredData, "Fri")));
+        yValues.add(new Entry(7, Helper.countOccurence(filteredData, "Sat")));
 
         LineDataSet set1 = new LineDataSet(yValues, "Data Set 1");
 
         set1.setFillAlpha(110);
 
-        set1.setColor(Color.YELLOW);
+        set1.setColor(Color.BLUE);
         set1.setLineWidth(3f);
         set1.setValueTextSize(10f);
         set1.setValueTextColor(Color.BLUE);
+
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
@@ -153,7 +142,7 @@ public class GraphActivity extends AppCompatActivity implements
 
         mChart.setData(data);
 
-        String[] values = new String[] {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        String[] values = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setValueFormatter(new MyAxisValueFormatter(values));
@@ -162,15 +151,17 @@ public class GraphActivity extends AppCompatActivity implements
 
     }
 
+
     public class MyAxisValueFormatter implements IAxisValueFormatter {
         private String[] mValues;
-        public MyAxisValueFormatter(String[] values){
+
+        public MyAxisValueFormatter(String[] values) {
             this.mValues = values;
         }
 
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
-            return mValues[(int)value-1];
+            return mValues[(int) value - 1];
         }
     }
 }

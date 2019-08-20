@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "main").build();
     }
 
     @Override
