@@ -532,10 +532,8 @@ public class SoftKeyboard extends InputMethodService
         if (isWordSeparator(primaryCode)) {
             // Handle separator
             if (mComposing.length() > 0) {
-                //TODO 단어
+
                 Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
-
-
                 commitTyped(getCurrentInputConnection());
 
 
