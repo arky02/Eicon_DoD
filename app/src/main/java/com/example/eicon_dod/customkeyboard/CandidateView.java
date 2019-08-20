@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.example.eicon_dod.customkeyboard;
 
 import android.content.Context;
@@ -26,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.eicon_dod.R;
+import com.example.eicon_dod.customkeyboard.SoftKeyboard;
 
 import java.util.ArrayList;
 import java.util.List;
