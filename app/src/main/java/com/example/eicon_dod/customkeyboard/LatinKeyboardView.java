@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.eicon_dod.customkeyboard;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -57,7 +57,7 @@ public class LatinKeyboardView extends KeyboardView {
     }
 
     void setSubtypeOnSpaceKey(final InputMethodSubtype subtype) {
-        final LatinKeyboard keyboard = (LatinKeyboard)getKeyboard();
+        final com.example.eicon_dod.customkeyboard.LatinKeyboard keyboard = (com.example.eicon_dod.customkeyboard.LatinKeyboard)getKeyboard();
         //keyboard.setSpaceIcon(getResources().getDrawable(subtype.getIconResId()));
         invalidateAllKeys();
     }
