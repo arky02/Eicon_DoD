@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.eicon_dod;
+package com.example.eicon_dod.customkeyboard;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
+import com.example.eicon_dod.R;
 import com.example.eicon_dod.android.inputmethodcommon.InputMethodSettingsFragment;
 
 

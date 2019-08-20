@@ -41,11 +41,35 @@ import android.view.textservice.TextInfo;
 import android.view.textservice.TextServicesManager;
 import android.widget.TextView;
 
+
 import com.example.eicon_dod.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static com.example.eicon_dod.Data_meanings.Derp;
+import static com.example.eicon_dod.Data_meanings.Lame;
+import static com.example.eicon_dod.Data_meanings.OCD;
+import static com.example.eicon_dod.Data_meanings.Retarded;
+import static com.example.eicon_dod.Data_meanings.bug;
+import static com.example.eicon_dod.Data_meanings.chairman;
+import static com.example.eicon_dod.Data_meanings.clergyman;
+import static com.example.eicon_dod.Data_meanings.colored;
+import static com.example.eicon_dod.Data_meanings.crazy;
+import static com.example.eicon_dod.Data_meanings.exotic;
+import static com.example.eicon_dod.Data_meanings.foreman;
+import static com.example.eicon_dod.Data_meanings.ghetto;
+import static com.example.eicon_dod.Data_meanings.insane;
+import static com.example.eicon_dod.Data_meanings.jipgyp;
+import static com.example.eicon_dod.Data_meanings.mai;
+import static com.example.eicon_dod.Data_meanings.mankind;
+import static com.example.eicon_dod.Data_meanings.miss;
+import static com.example.eicon_dod.Data_meanings.mrs;
+import static com.example.eicon_dod.Data_meanings.sis;
+import static com.example.eicon_dod.Data_meanings.tranny;
+import static com.example.eicon_dod.Data_meanings.uppityy;
+import static com.example.eicon_dod.Data_meanings.whi;
 
 /**
  * Example of writing an input method for a soft keyboard.  This code is
@@ -57,6 +81,7 @@ import java.util.Locale;
 public class SoftKeyboard extends InputMethodService
         implements KeyboardView.OnKeyboardActionListener, SpellCheckerSession.SpellCheckerSessionListener {
     static final boolean DEBUG = false;
+    boolean isMatched = false;
 
     /**
      * This boolean indicates the optional example code for performing
@@ -98,9 +123,10 @@ public class SoftKeyboard extends InputMethodService
      * Main initialization of the input method component.  Be sure to call
      * to super class.
      */
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         super.onCreate();
-        mInputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         mWordSeparators = getResources().getString(R.string.word_separators);
         final TextServicesManager tsm = (TextServicesManager) getSystemService(
                 Context.TEXT_SERVICES_MANAGER_SERVICE);
@@ -112,7 +138,8 @@ public class SoftKeyboard extends InputMethodService
      * This is the point where you can do all of your UI initialization.  It
      * is called after creation and any configuration change.
      */
-    @Override public void onInitializeInterface() {
+    @Override
+    public void onInitializeInterface() {
         if (mQwertyKeyboard != null) {
             // Configuration changes can happen after the keyboard gets recreated,
             // so we need to be able to re-build the keyboards if the available
@@ -132,7 +159,8 @@ public class SoftKeyboard extends InputMethodService
      * is displayed, and every time it needs to be re-created such as due to
      * a configuration change.
      */
-    @Override public View onCreateInputView() {
+    @Override
+    public View onCreateInputView() {
         mInputView = (com.example.eicon_dod.customkeyboard.LatinKeyboardView) getLayoutInflater().inflate(
                 R.layout.input, null);
         mInputView.setOnKeyboardActionListener(this);
@@ -152,7 +180,8 @@ public class SoftKeyboard extends InputMethodService
      * Called by the framework when your view for showing candidates needs to
      * be generated, like {@link #onCreateInputView}.
      */
-    @Override public View onCreateCandidatesView() {
+    @Override
+    public View onCreateCandidatesView() {
         mCandidateView = new com.example.eicon_dod.customkeyboard.CandidateView(this);
         mCandidateView.setService(this);
         return mCandidateView;
@@ -164,7 +193,8 @@ public class SoftKeyboard extends InputMethodService
      * bound to the client, and are now receiving all of the detailed information
      * about the target of our edits.
      */
-    @Override public void onStartInput(EditorInfo attribute, boolean restarting) {
+    @Override
+    public void onStartInput(EditorInfo attribute, boolean restarting) {
         super.onStartInput(attribute, restarting);
 
         // Reset our state.  We want to do this even if restarting, because
@@ -255,7 +285,8 @@ public class SoftKeyboard extends InputMethodService
      * This is called when the user is done editing a field.  We can use
      * this to reset our state.
      */
-    @Override public void onFinishInput() {
+    @Override
+    public void onFinishInput() {
         super.onFinishInput();
 
         // Clear current composing text and candidates.
@@ -274,7 +305,8 @@ public class SoftKeyboard extends InputMethodService
         }
     }
 
-    @Override public void onStartInputView(EditorInfo attribute, boolean restarting) {
+    @Override
+    public void onStartInputView(EditorInfo attribute, boolean restarting) {
         super.onStartInputView(attribute, restarting);
         // Apply the selected keyboard to the input view.
         setLatinKeyboard(mCurKeyboard);
@@ -291,9 +323,10 @@ public class SoftKeyboard extends InputMethodService
     /**
      * Deal with the editor reporting movement of its cursor.
      */
-    @Override public void onUpdateSelection(int oldSelStart, int oldSelEnd,
-                                            int newSelStart, int newSelEnd,
-                                            int candidatesStart, int candidatesEnd) {
+    @Override
+    public void onUpdateSelection(int oldSelStart, int oldSelEnd,
+                                  int newSelStart, int newSelEnd,
+                                  int candidatesStart, int candidatesEnd) {
         super.onUpdateSelection(oldSelStart, oldSelEnd, newSelStart, newSelEnd,
                 candidatesStart, candidatesEnd);
 
@@ -316,7 +349,8 @@ public class SoftKeyboard extends InputMethodService
      * to show the completions ourself, since the editor can not be seen
      * in that situation.
      */
-    @Override public void onDisplayCompletions(CompletionInfo[] completions) {
+    @Override
+    public void onDisplayCompletions(CompletionInfo[] completions) {
         if (mCompletionOn) {
             mCompletions = completions;
             if (completions == null) {
@@ -356,12 +390,12 @@ public class SoftKeyboard extends InputMethodService
         }
 
         if (mComposing.length() > 0) {
-            char accent = mComposing.charAt(mComposing.length() -1 );
+            char accent = mComposing.charAt(mComposing.length() - 1);
             int composed = KeyEvent.getDeadChar(accent, c);
 
             if (composed != 0) {
                 c = composed;
-                mComposing.setLength(mComposing.length()-1);
+                mComposing.setLength(mComposing.length() - 1);
             }
         }
 
@@ -375,7 +409,8 @@ public class SoftKeyboard extends InputMethodService
      * We get first crack at them, and can either resume them or let them
      * continue to the app.
      */
-    @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
@@ -444,7 +479,8 @@ public class SoftKeyboard extends InputMethodService
      * We get first crack at them, and can either resume them or let them
      * continue to the app.
      */
-    @Override public boolean onKeyUp(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         // If we want to do transformations on text being entered with a hard
         // keyboard, we need to process the up events to update the meta key
         // state we are tracking.
@@ -533,7 +569,22 @@ public class SoftKeyboard extends InputMethodService
             // Handle separator
             if (mComposing.length() > 0) {
                 //TODO 단어
+
+                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind"};
+                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind};
+                for(int i =0 ; i<=bad_word.length; i++){
+                    if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
+                        String meaning_badword = word_meaning[i];
+                        String word_bad = bad_word[i];
+
+                        Log.d("meaning_badword ", meaning_badword );
+                        Log.d("word_bad ",word_bad );
+                    }
+                }
+
+
                 Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
+
 
 
                 commitTyped(getCurrentInputConnection());
