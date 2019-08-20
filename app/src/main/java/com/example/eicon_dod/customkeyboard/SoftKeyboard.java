@@ -42,10 +42,13 @@ import android.view.textservice.TextServicesManager;
 import android.widget.Toast;
 
 
+import com.example.eicon_dod.Database.AppDatabase;
+import com.example.eicon_dod.Database.Data;
 import com.example.eicon_dod.SpeechBubble_checkpermission;
 import com.example.eicon_dod.R;
 import com.example.eicon_dod.SpeechBubble_service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -585,8 +588,10 @@ public class SoftKeyboard extends InputMethodService
 
                         Log.d("meaning_badword ", meaning_badword );
                         Log.d("word_bad ",word_bad );
-
-                        //TODO: we need to upload timestamp and word(word_bad) here
+                        
+                        AppDatabase db = AppDatabase.getInstance(this);
+                        Data data = new Data(new Timestamp(System.currentTimeMillis()), word_bad);
+                        db.dataDAO().insertData(data);
 
                         isOkay = true;
 
