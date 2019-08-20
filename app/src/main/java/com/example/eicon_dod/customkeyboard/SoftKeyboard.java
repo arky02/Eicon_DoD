@@ -575,7 +575,6 @@ public class SoftKeyboard extends InputMethodService
         if (isWordSeparator(primaryCode)) {
             // Handle separator
             if (mComposing.length() > 0) {
-                //TODO 단어
 
                 String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind"};
                 String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind};
