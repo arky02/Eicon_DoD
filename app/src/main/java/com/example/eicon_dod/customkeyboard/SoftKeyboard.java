@@ -535,6 +535,7 @@ public class SoftKeyboard extends InputMethodService
                 commitTyped(getCurrentInputConnection());
             }
             sendKey(primaryCode);
+            
             updateShiftKeyState(getCurrentInputEditorInfo());
         } else if (primaryCode == Keyboard.KEYCODE_DELETE) {
             handleBackspace();
