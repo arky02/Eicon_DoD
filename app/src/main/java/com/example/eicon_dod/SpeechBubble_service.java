@@ -36,7 +36,7 @@ public class SpeechBubble_service extends Service {
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
 
-        if(isOkay) {
+        if (isOkay) {
             bad_word = word_bad;
             badWord_meaning = meaning_badword;
         }
@@ -57,15 +57,15 @@ public class SpeechBubble_service extends Service {
         textView.setText(" \"" + bad_word + "\" " + "is a bad word! ");
         final Button bt = mView.findViewById(R.id.bt);
         bt.setOnClickListener(view -> {
-                if (is_first) {
-                    textView.setText(badWord_meaning);
-                    is_first = false;
-                    bt.setText("Okay! I'll Change");
-                    bt.setTextColor(getResources().getColor(android.R.color.black));
-                } else {
-                    stopService(new Intent(getApplicationContext(), SpeechBubble_service.class));
-                    bt.setTextColor(getResources().getColor(android.R.color.white));
-                }
+            if (is_first) {
+                textView.setText(badWord_meaning);
+                is_first = false;
+                bt.setText("Okay! I'll Change");
+                bt.setTextColor(getResources().getColor(android.R.color.black));
+            } else {
+                stopService(new Intent(getApplicationContext(), SpeechBubble_service.class));
+                bt.setTextColor(getResources().getColor(android.R.color.white));
+            }
         });
         wm.addView(mView, params);
     }

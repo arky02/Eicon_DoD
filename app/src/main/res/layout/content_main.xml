@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="177dp"
         android:src="@drawable/starz" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,22 +23,23 @@
         android:layout_marginBottom="12dp"
         android:textStyle="bold"
         android:textSize="25dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginBottom="17dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Weekly Discriminatory Language Usage Graph"/>
+            android:text="My Weekly Discriminatory Language Usage Graph" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/graph"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/graph" />
 
     </LinearLayout>
 
@@ -46,20 +48,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Top frequently written differential expressions"/>
+            android:text="Top frequently written differential expressions" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1. Nigga - 56 times\n2. Whipped – 35 \n3. Whitey – 21 times"
-                android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. Nigga - 56 times\n2. Whipped – 35 \n3. Whitey – 21 times"
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

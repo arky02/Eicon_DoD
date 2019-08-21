@@ -29,7 +29,7 @@ public class Helper {
 
         List<Data> DataList = new ArrayList<>();
         for (Data temp : data) {
-            if(temp.timestamp.after(c.getTime())) {
+            if (temp.timestamp.after(c.getTime())) {
                 DataList.add(temp);
             }
         }

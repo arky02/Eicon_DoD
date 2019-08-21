@@ -69,6 +69,7 @@ public class CandidateView extends View {
 
     /**
      * Construct a CandidateView for showing suggested words for completion.
+     *
      * @param context
      * @param attrs
      */
@@ -76,7 +77,7 @@ public class CandidateView extends View {
         super(context);
         mSelectionHighlight = context.getResources().getDrawable(
                 android.R.drawable.list_selector_background);
-        mSelectionHighlight.setState(new int[] {
+        mSelectionHighlight.setState(new int[]{
                 android.R.attr.state_enabled,
                 android.R.attr.state_focused,
                 android.R.attr.state_window_focused,
@@ -125,6 +126,7 @@ public class CandidateView extends View {
 
     /**
      * A connection back to the service to communicate with the text field
+     *
      * @param listener
      */
     public void setService(SoftKeyboard listener) {
@@ -144,7 +146,7 @@ public class CandidateView extends View {
         // not have a divider below)
         Rect padding = new Rect();
         mSelectionHighlight.getPadding(padding);
-        final int desiredHeight = ((int)mPaint.getTextSize()) + mVerticalPadding
+        final int desiredHeight = ((int) mPaint.getTextSize()) + mVerticalPadding
                 + padding.top + padding.bottom;
 
         // Maximum possible width and desired height
@@ -305,6 +307,7 @@ public class CandidateView extends View {
     /**
      * For flick through from keyboard, call this method with the x coordinate of the flick
      * gesture.
+     *
      * @param x
      */
     public void takeSuggestionAt(float x) {
