@@ -142,7 +142,7 @@ public class SoftKeyboard extends InputMethodService
 
     private com.example.eicon_dod.customkeyboard.LatinKeyboard mSymbolsKeyboard;
     private com.example.eicon_dod.customkeyboard.LatinKeyboard mSymbolsShiftedKeyboard;
-    private com.example.eicon_dod.customkeyboard.LatinKeyboard mQwertyKeyboard;
+    static public com.example.eicon_dod.customkeyboard.LatinKeyboard mQwertyKeyboard;
 
     private com.example.eicon_dod.customkeyboard.LatinKeyboard mCurKeyboard;
 
@@ -597,7 +597,7 @@ public class SoftKeyboard extends InputMethodService
     // Implementation of KeyboardViewListener
 
     public void onKey(int primaryCode, int[] keyCodes) {
-        Log.d("Test","KEYCODE: " + primaryCode);
+        Log.d("Test", "KEYCODE: " + primaryCode);
         if (isWordSeparator(primaryCode)) {
             // Handle separator
             if (mComposing.length() > 0) {

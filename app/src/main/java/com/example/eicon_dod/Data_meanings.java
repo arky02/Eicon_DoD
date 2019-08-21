@@ -48,6 +48,4 @@ public class Data_meanings {
     public static String hysteria = "This term's origin is related to sexism. Doctors used this word as a medical explanation for nearly every sick woman they encountered. The idea for such a diagnosis comes from belief that a woman's hysteria is caused by a 'wandering uterus' that is deprived of sexual pleasure.";
     public static String spinster = "It meant a person who spun yard or thread for a living. But it is used to call an unmarried, lower-class woman.";
 
-
-
 }
