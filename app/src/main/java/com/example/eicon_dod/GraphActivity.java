@@ -125,7 +125,7 @@ public class GraphActivity extends AppCompatActivity implements
         yValues.add(new Entry(6, Helper.countOccurence(filteredData, "Fri")));
         yValues.add(new Entry(7, Helper.countOccurence(filteredData, "Sat")));
 
-        LineDataSet set1 = new LineDataSet(yValues, "Data Set 1");
+        LineDataSet set1 = new LineDataSet(yValues, "Bad word");
 
         set1.setFillAlpha(110);
 
