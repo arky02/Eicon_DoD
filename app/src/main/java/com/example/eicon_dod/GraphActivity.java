@@ -115,15 +115,15 @@ public class GraphActivity extends AppCompatActivity implements
 
         AppDatabase db = AppDatabase.getInstance(this);
         List<Data> dbData = db.dataDAO().getDataList();
-        List<Data> filteredData = Helper.filterDate(dbData, new Timestamp(System.currentTimeMillis()));
+        List<Data> filteredData = Helper.filterDate(dbData);
 
-        yValues.add(new Entry(1, Helper.countOccurence(filteredData, "Sun")));
-        yValues.add(new Entry(2, Helper.countOccurence(filteredData, "Mon")));
-        yValues.add(new Entry(3, Helper.countOccurence(filteredData, "Tue")));
-        yValues.add(new Entry(4, Helper.countOccurence(filteredData, "Wed")));
-        yValues.add(new Entry(5, Helper.countOccurence(filteredData, "Thu")));
-        yValues.add(new Entry(6, Helper.countOccurence(filteredData, "Fri")));
-        yValues.add(new Entry(7, Helper.countOccurence(filteredData, "Sat")));
+        yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
+        yValues.add(new Entry(2, Helper.countOccurrence(filteredData, true, "Mon")));
+        yValues.add(new Entry(3, Helper.countOccurrence(filteredData, true, "Tue")));
+        yValues.add(new Entry(4, Helper.countOccurrence(filteredData, true, "Wed")));
+        yValues.add(new Entry(5, Helper.countOccurrence(filteredData, true, "Thu")));
+        yValues.add(new Entry(6, Helper.countOccurrence(filteredData, true, "Fri")));
+        yValues.add(new Entry(7, Helper.countOccurrence(filteredData, true, "Sat")));
 
         LineDataSet set1 = new LineDataSet(yValues, "Bad word");
 

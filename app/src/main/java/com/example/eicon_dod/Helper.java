@@ -10,19 +10,24 @@ import java.util.List;
 import java.util.Locale;
 
 public class Helper {
-    public static float countOccurence(List<Data> data, String date) {
+    public static float countOccurrence(List<Data> data, Boolean filter, String date) {
         float count = 0;
-        SimpleDateFormat simpleDateformat = new SimpleDateFormat("E", Locale.US);
-        for (Data temp : data) {
-            if (simpleDateformat.format(temp.timestamp).equals(date)) {
-                count++;
+
+        if (filter) {
+            SimpleDateFormat simpleDateformat = new SimpleDateFormat("E", Locale.US);
+            for (Data temp : data) {
+                if (simpleDateformat.format(temp.timestamp).equals(date)) {
+                    count++;
+                }
             }
+        } else {
+            return data.size();
         }
 
         return count;
     }
 
-    public static List<Data> filterDate(List<Data> data, Timestamp time) {
+    public static List<Data> filterDate(List<Data> data) {
         Calendar c = Calendar.getInstance();
         c.setFirstDayOfWeek(Calendar.SUNDAY);
         c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek());

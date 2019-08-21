@@ -4,52 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main"
+    android:background="#FFFFFFFF"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#FFFFFFFF">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="177dp"
-        android:src="@drawable/starz" />
+        android:src="@drawable/icon" />
 
     <TextView
         android:id="@+id/greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/greeting"
-        android:layout_marginBottom="12dp"
-        android:textStyle="bold"
         android:textSize="25dp"
-        android:layout_marginTop="10dp" />
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="You can do better!"
-        android:layout_marginBottom="12dp"
-        android:textStyle="bold"
         android:textSize="25dp"
-        android:layout_marginTop="10dp" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="17dp">
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Weekly Discriminatory Language Usage Graph" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/graph" />
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/Linechart"
+            android:layout_marginTop="25dp"
+            android:layout_width="657dp"
+            android:layout_height="300dp" />
 
     </LinearLayout>
 
@@ -67,8 +68,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1. Nigga - 56 times\n2. Whipped – 35 \n3. Whitey – 21 times"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:text="1. Nigga - 56 times\n2. Whipped – 35 \n3. Whitey – 21 times" />
 
     </LinearLayout>
 
