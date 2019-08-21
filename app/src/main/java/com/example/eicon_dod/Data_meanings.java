@@ -24,16 +24,30 @@ public class Data_meanings {
     public static String clergyman = "When referring to a position, a quality or an action that might apply to either sex, use a sex neutral term. Also, avoid the use of man or of composite words involving the syllable — man, which imply the term is exclusively male. Use term \"members of clergy\" instead using \"clergyman\"";
     public static String foreman = "When referring to a position, a quality or an action that might apply to either sex, use a sex neutral term. Also, avoid the use of man or of composite words involving the syllable — man, which imply the term is exclusively male. Use term \"supervisor\" instead using \"foreman\"";
     public static String mankind = "When referring to a position, a quality or an action that might apply to either sex, use a sex neutral term. Also, avoid the use of man or of composite words involving the syllable — man, which imply the term is exclusively male. Use term \\\"beings/humankind/civilisation/people/human rac\\\" instead using \\\"mankind\"";
-//    public static String
-//    public static String
-//    public static String
-//    public static String
-//    public static String
-//    public static String
-//    public static String
-//    public static String
-//    public static String
-//    public static String\
+    public static String negro = "Oppressed individual usually cast as a powerless scapegoat, regardless of race; very derogatory term for a person of black or African heritage.";
+    public static String faggot = "It's a derisive term for homosexual men. It is offensive unless it is used by homosexuals.";
+    public static String bap = "It's am acronym for Black American Princess, denoting a black female with an attitude.  It's often seen on license plates.";
+    public static String bitch = "It's an uncomplimentary term referring to human female who is perceived as irritable, angry, or cranky. It's usually used by human males in derogatory fashion.";
+    public static String jap = "It's a racism word. It can be uncomplimentary shorthand for 'Japanese' or acronym for 'Jewish American Princess', female of Jewish descent with an attitude.";
+    public static String coonass = "It's a term used in reference to descendants of French-speaking Louisianans, or Cajuns. Some Cajuns use it with pride and find it inoffensive, while others consider it an ethnic slur.";
+    public static String dago = "It means person of Italian descent. It can be derogatory only if it's used by non-Italians.";
+    public static String heime ="It means individual of Jewish descent. It is definitely not complimentary.";
+    public static String honky = "It's a derisive term for \"white person\", as used by blacks.";
+    public static String nappy = "Meaning tight, curly hair.  Generally associated with persons of color, particularly those of black or African descent.  Not particularly derogatory; often used by blacks to refer to hair type.  Often used by black mothers when admonishing their children, as in \"Bring your nappy head in here right now!\"  White school teachers, however, must not use this word.";
+    public static String nigger = "Oppressed individual usually cast as a powerless scapegoat, regardless of race; very derogatory term for a person of black or African heritage.";
+    public static String kraut = "Not-very-nice word for a person of German descent.  Used frequently in old war movies.";
+    public static String hooligan = "It derived from \"Houlihan\", a group of Irish immigrants living in London. It is derogatory to Irish people.";
+    public static String vandal = "It means 'dirty godless Germans'. It is offensive to Germans.";
+    public static String barbarian = "It means 'stupid jabbering foreigner'. It's a very xenophobic word.";
+    public static String cannibal = "It means 'people from the West Indies'. It's a very xenophobic word.";
+    public static String gyp = "It means 'filthy Eastern European immigrant'. It's a very xenophobic word.";
+    public static String picnic = "This term originated from racism. It means 'to lynch a black person'. Why don't you say \"excursion\" or \"barbecue\" instead?";
+    public static String eskimo = "It means 'eaters of raw meat'. Why don't you use \"Inuit\" instead?";
+    public static String spaz = "The stigma stems from the word’s association with cerebral palsy, a disease that was once referred to as spastic paralysis.";
+    public static String moron = "It means 'a psychological diagnosis denotinf a mild disability', so it is an ableism word.";
+    public static String hysteria = "This term's origin is related to sexism. Doctors used this word as a medical explanation for nearly every sick woman they encountered. The idea for such a diagnosis comes from belief that a woman's hysteria is caused by a 'wandering uterus' that is deprived of sexual pleasure.";
+    public static String spinster = "It meant a person who spun yard or thread for a living. But it is used to call an unmarried, lower-class woman.";
+
 
 
 }

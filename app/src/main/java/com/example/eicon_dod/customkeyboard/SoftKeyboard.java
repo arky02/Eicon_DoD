@@ -57,23 +57,46 @@ import static com.example.eicon_dod.Data_meanings.Derp;
 import static com.example.eicon_dod.Data_meanings.Lame;
 import static com.example.eicon_dod.Data_meanings.OCD;
 import static com.example.eicon_dod.Data_meanings.Retarded;
+import static com.example.eicon_dod.Data_meanings.bap;
+import static com.example.eicon_dod.Data_meanings.barbarian;
+import static com.example.eicon_dod.Data_meanings.bitch;
 import static com.example.eicon_dod.Data_meanings.bug;
+import static com.example.eicon_dod.Data_meanings.cannibal;
 import static com.example.eicon_dod.Data_meanings.chairman;
 import static com.example.eicon_dod.Data_meanings.clergyman;
 import static com.example.eicon_dod.Data_meanings.colored;
+import static com.example.eicon_dod.Data_meanings.coonass;
 import static com.example.eicon_dod.Data_meanings.crazy;
+import static com.example.eicon_dod.Data_meanings.dago;
+import static com.example.eicon_dod.Data_meanings.eskimo;
 import static com.example.eicon_dod.Data_meanings.exotic;
+import static com.example.eicon_dod.Data_meanings.faggot;
 import static com.example.eicon_dod.Data_meanings.foreman;
 import static com.example.eicon_dod.Data_meanings.ghetto;
+import static com.example.eicon_dod.Data_meanings.gyp;
+import static com.example.eicon_dod.Data_meanings.heime;
+import static com.example.eicon_dod.Data_meanings.honky;
+import static com.example.eicon_dod.Data_meanings.hooligan;
+import static com.example.eicon_dod.Data_meanings.hysteria;
 import static com.example.eicon_dod.Data_meanings.insane;
+import static com.example.eicon_dod.Data_meanings.jap;
 import static com.example.eicon_dod.Data_meanings.jipgyp;
+import static com.example.eicon_dod.Data_meanings.kraut;
 import static com.example.eicon_dod.Data_meanings.mai;
 import static com.example.eicon_dod.Data_meanings.mankind;
 import static com.example.eicon_dod.Data_meanings.miss;
+import static com.example.eicon_dod.Data_meanings.moron;
 import static com.example.eicon_dod.Data_meanings.mrs;
+import static com.example.eicon_dod.Data_meanings.nappy;
+import static com.example.eicon_dod.Data_meanings.negro;
+import static com.example.eicon_dod.Data_meanings.nigger;
+import static com.example.eicon_dod.Data_meanings.picnic;
 import static com.example.eicon_dod.Data_meanings.sis;
+import static com.example.eicon_dod.Data_meanings.spaz;
+import static com.example.eicon_dod.Data_meanings.spinster;
 import static com.example.eicon_dod.Data_meanings.tranny;
 import static com.example.eicon_dod.Data_meanings.uppityy;
+import static com.example.eicon_dod.Data_meanings.vandal;
 import static com.example.eicon_dod.Data_meanings.whi;
 import static com.example.eicon_dod.SpeechBubble_checkpermission.isPermissionOkay;
 
@@ -579,8 +602,9 @@ public class SoftKeyboard extends InputMethodService
             // Handle separator
             if (mComposing.length() > 0) {
 
-                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind"};
-                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind};
+                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind","negro","niggar","faggot","fag","bap","bitch","jap","coonass","dago","heime","heimy","himy","honky","nappy","nigger","kraut","hooligan","vandal","barbarian","cannibal","gyp","picnic","eskimo","spaz","moron","hysteria","spinster"};
+
+                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind,negro,negro,faggot,faggot,bap,bitch,jap,coonass,dago,heime,heime,heime,honky,nappy,nigger,kraut,hooligan,vandal,barbarian,cannibal,gyp,picnic,eskimo,spaz,moron,hysteria,spinster};
                 for(int i =0 ; i< bad_word.length; i++){
                     if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
                         meaning_badword = word_meaning[i];
