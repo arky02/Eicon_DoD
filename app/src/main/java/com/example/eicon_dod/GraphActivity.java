@@ -23,7 +23,6 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,13 +99,10 @@ public class GraphActivity extends AppCompatActivity implements
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.removeAllLimitLines();
-        //leftAxis.addLimitLine(upper_limit);
-        //leftAxis.addLimitLine(lower_limit);
         leftAxis.setAxisMaximum(100f);
-        leftAxis.setAxisMinimum(25f);
+        leftAxis.setAxisMinimum(0f);
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawLimitLinesBehindData(true);
-
 
         mChart.getAxisRight().setEnabled(false);
 
@@ -142,7 +138,7 @@ public class GraphActivity extends AppCompatActivity implements
 
         mChart.setData(data);
 
-        String[] values = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        String[] values = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setValueFormatter(new MyAxisValueFormatter(values));

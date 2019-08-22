@@ -41,7 +41,10 @@ import android.widget.TextView;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnChartGestureListener, OnChartValueSelectedListener {
@@ -49,22 +52,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ImageButton imgbtn;
     private LineChart mChart;
-    SharedPreferences sharedBad,sharedGood;
+    SharedPreferences sharedBad, sharedGood;
     ImageView[] imageView = new ImageView[5];
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ArrayList<Entry> yValues = new ArrayList<>();
+        countStar();
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        List<Data> dbData = db.dataDAO().getDataList();
+        List<Data> filteredData = Helper.filterDate(dbData);
+
+        yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
+        yValues.add(new Entry(2, Helper.countOccurrence(filteredData, true, "Mon")));
+        yValues.add(new Entry(3, Helper.countOccurrence(filteredData, true, "Tue")));
+        yValues.add(new Entry(4, Helper.countOccurrence(filteredData, true, "Wed")));
+        yValues.add(new Entry(5, Helper.countOccurrence(filteredData, true, "Thu")));
+        yValues.add(new Entry(6, Helper.countOccurrence(filteredData, true, "Fri")));
+        yValues.add(new Entry(7, Helper.countOccurrence(filteredData, true, "Sat")));
+
+        LineDataSet set1 = new LineDataSet(yValues, "Bad word");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.BLUE);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(10f);
+        set1.setValueTextColor(Color.BLUE);
+
+
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+
+        LineData data = new LineData(dataSets);
+
+        mChart.setData(data);
+        mChart.notifyDataSetChanged();
+    }
 
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i(TAG, "onChartGestureStart: X: " + me.getX() + "Y: " + me.getY());
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        countStar();
-
 
     }
 
@@ -159,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.removeAllLimitLines();
         leftAxis.setAxisMaximum(100f);
-        leftAxis.setAxisMinimum(25f);
+        leftAxis.setAxisMinimum(0f);
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawLimitLinesBehindData(true);
 
@@ -198,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mChart.setData(data);
 
-        String[] values = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        String[] values = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setValueFormatter(new MyAxisValueFormatter(values));
@@ -207,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         imgbtn.setOnClickListener(view -> {
-            Intent mintent = new Intent(getApplicationContext(),Forgive.class);
+            Intent mintent = new Intent(getApplicationContext(), Forgive.class);
             startActivity(mintent);
         });
 
@@ -246,6 +277,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
         Log.e("sharedBad", testint.toString());
         Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
+
+
+
         sharedGood = getSharedPreferences("goodPoint", 0);
         Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
 
@@ -253,7 +287,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (finalAmount>= 5){
             finalAmount = 5;
-            //
         }
 
         if(finalAmount>=0){
@@ -293,6 +326,64 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(finalAmount<0){
             imgbtn.setImageResource(R.drawable.emoji5);
         }
+
+        TreeMap<Integer, Map.Entry<String, Integer>> TopThree = Helper.topThree(dbData);
+
+        TextView firstText = findViewById(R.id.first);
+        Map.Entry<String, Integer> first = TopThree.get(1);
+        if (first == null) {
+            firstText.setText(getString(R.string.first, "-", "-"));
+        } else {
+            firstText.setText(getString(R.string.first, first.getKey(), first.getValue().toString()));
+        }
+
+        TextView secondText = findViewById(R.id.second);
+        Map.Entry<String, Integer> second = TopThree.get(2);
+        if (second == null) {
+            secondText.setText(getString(R.string.second, "-", "-"));
+        } else {
+            secondText.setText(getString(R.string.second, second.getKey(), second.getValue().toString()));
+        }
+
+        TextView thirdText = findViewById(R.id.third);
+        Map.Entry<String, Integer> third = TopThree.get(3);
+        if (third == null) {
+            thirdText.setText(getString(R.string.third, "-", "-"));
+        } else {
+            thirdText.setText(getString(R.string.third, third.getKey(), third.getValue().toString()));
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile", MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", "John Doe");
+        Log.e("NAV", name);
+        TextView navName = findViewById(R.id.nav_name);
+        navName.setText(name);
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -638,8 +638,6 @@ public class SoftKeyboard extends InputMethodService
                 }
                 Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
                 commitTyped(getCurrentInputConnection());
-
-
             }
 
             sendKey(primaryCode);

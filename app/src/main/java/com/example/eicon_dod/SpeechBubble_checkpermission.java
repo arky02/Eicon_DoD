@@ -8,13 +8,10 @@ import android.os.Build;
 import android.provider.Settings;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.eicon_dod.customkeyboard.SoftKeyboard.isOkay;
 
 public class SpeechBubble_checkpermission extends AppCompatActivity {
 
@@ -28,25 +25,6 @@ public class SpeechBubble_checkpermission extends AppCompatActivity {
         context = getApplicationContext();
 
         overlayPermission();
-
-//        if(isOkay) {
-//            overlayPermission();
-////
-////            Button bt_stop = (Button) findViewById(R.id.bt_stop);
-//            bt_stop.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    stopService(new Intent(getApplicationContext(), SpeechBubble_service.class));
-//                }
-//            });
-//            Button bt_start = findViewById(R.id.bt_start);
-//            bt_start.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    overlayPermission();
-//                }
-//            });
-//        }
     }
 
     public void overlayPermission() {
