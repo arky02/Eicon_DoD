@@ -17,6 +17,7 @@ public class Helper {
         if (filter) {
             SimpleDateFormat simpleDateformat = new SimpleDateFormat("E", Locale.US);
             for (Data temp : data) {
+                Log.e("Graph", simpleDateformat.format(temp.timestamp));
                 if (simpleDateformat.format(temp.timestamp).equals(date)) {
                     count++;
                 }

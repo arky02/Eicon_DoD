@@ -39,7 +39,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +50,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LineChart mChart;
     SharedPreferences sharedBad,sharedGood;
     ImageView[] imageView = new ImageView[5];
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ArrayList<Entry> yValues = new ArrayList<>();
+
+        AppDatabase db = AppDatabase.getInstance(this);
+        List<Data> dbData = db.dataDAO().getDataList();
+        List<Data> filteredData = Helper.filterDate(dbData);
+        
+        yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
+        yValues.add(new Entry(2, Helper.countOccurrence(filteredData, true, "Mon")));
+        yValues.add(new Entry(3, Helper.countOccurrence(filteredData, true, "Tue")));
+        yValues.add(new Entry(4, Helper.countOccurrence(filteredData, true, "Wed")));
+        yValues.add(new Entry(5, Helper.countOccurrence(filteredData, true, "Thu")));
+        yValues.add(new Entry(6, Helper.countOccurrence(filteredData, true, "Fri")));
+        yValues.add(new Entry(7, Helper.countOccurrence(filteredData, true, "Sat")));
+
+        LineDataSet set1 = new LineDataSet(yValues, "Bad word");
+
+        set1.setFillAlpha(110);
+
+        set1.setColor(Color.BLUE);
+        set1.setLineWidth(3f);
+        set1.setValueTextSize(10f);
+        set1.setValueTextColor(Color.BLUE);
+
+
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+
+        LineData data = new LineData(dataSets);
+
+        mChart.setData(data);
+        mChart.notifyDataSetChanged();
+    }
 
 
     @Override
@@ -147,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.removeAllLimitLines();
         leftAxis.setAxisMaximum(100f);
-        leftAxis.setAxisMinimum(25f);
+        leftAxis.setAxisMinimum(0f);
         leftAxis.enableGridDashedLine(10f, 10f, 0);
         leftAxis.setDrawLimitLinesBehindData(true);
 
@@ -160,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AppDatabase db = AppDatabase.getInstance(this);
         List<Data> dbData = db.dataDAO().getDataList();
         List<Data> filteredData = Helper.filterDate(dbData);
+        Log.e("GRAPH", filteredData.toString());
+
 
         yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
         yValues.add(new Entry(2, Helper.countOccurrence(filteredData, true, "Mon")));
@@ -186,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mChart.setData(data);
 
-        String[] values = new String[]{"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        String[] values = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setValueFormatter(new MyAxisValueFormatter(values));
