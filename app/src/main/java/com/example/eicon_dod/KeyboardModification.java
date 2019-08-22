@@ -26,6 +26,7 @@ public class KeyboardModification extends AppCompatActivity {
 
         Intent mintent = new Intent(getApplicationContext(), ImePreferences.class);
         startActivity(mintent);
+        finish();
 
 //        seekBar = (SeekBar) findViewById(R.id.seekBar);
 //        textView = (TextView) findViewById(R.id.textView);
