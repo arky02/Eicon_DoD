@@ -40,7 +40,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnChartGestureListener, OnChartValueSelectedListener {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ImageButton imgbtn;
     private LineChart mChart;
-    SharedPreferences sharedBad,sharedGood;
+    SharedPreferences sharedBad, sharedGood;
     ImageView[] imageView = new ImageView[5];
 
     @Override
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AppDatabase db = AppDatabase.getInstance(this);
         List<Data> dbData = db.dataDAO().getDataList();
         List<Data> filteredData = Helper.filterDate(dbData);
-        
+
         yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
         yValues.add(new Entry(2, Helper.countOccurrence(filteredData, true, "Mon")));
         yValues.add(new Entry(3, Helper.countOccurrence(filteredData, true, "Tue")));
@@ -232,55 +235,82 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         imgbtn.setOnClickListener(view -> {
-            Intent mintent = new Intent(getApplicationContext(),Forgive.class);
+            Intent mintent = new Intent(getApplicationContext(), Forgive.class);
             startActivity(mintent);
         });
-        sharedBad= getSharedPreferences("badPoint", 0);
-        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
+        sharedBad = getSharedPreferences("badPoint", 0);
+        Integer testint = new Integer(sharedBad.getInt("badPoint", 0));
         Log.e("sharedBad", testint.toString());
-        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
-
+        Integer badAmount = sharedBad.getInt("badPoint", 0) / 5;
 
 
         sharedGood = getSharedPreferences("goodPoint", 0);
-        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
+        Integer goodAmount = sharedGood.getInt("goodPoint", 0) + 5;
 
-        int finalAmount = goodAmonut-badAmount;
+        int finalAmount = goodAmount - badAmount;
 
-        if (finalAmount>= 5){
+        if (finalAmount >= 5) {
             finalAmount = 5;
         }
 
-        if(finalAmount>=0){
+        if (finalAmount >= 0) {
 
-        for(int i=0;i<finalAmount;i++){
-            imageView[i].setImageResource(R.drawable.star2);
-        }
-        for(int i= finalAmount;i<5;i++) {
-            imageView[i].setImageResource(R.drawable.star0);
-        }
-
-        }else{
-                for(int i= 0;i<5;i++) {
-                    imageView[i].setImageResource(R.drawable.star0);
-
-
-                }
-        }
-
-        if(finalAmount < 5&& finalAmount>=0){
-            switch (finalAmount){
-                case 0: imgbtn.setImageResource(R.drawable.emoji5);
-                case 1: imgbtn.setImageResource(R.drawable.emoji4);
-                case 2 : imgbtn.setImageResource(R.drawable.emoji3);
-                case 3 : imgbtn.setImageResource(R.drawable.emoji2);
-                case 4 : imgbtn.setImageResource(R.drawable.emoji1);
-
+            for (int i = 0; i < finalAmount; i++) {
+                imageView[i].setImageResource(R.drawable.star2);
             }
-        }else if(finalAmount>=5){
+            for (int i = finalAmount; i < 5; i++) {
+                imageView[i].setImageResource(R.drawable.star0);
+            }
+
+        } else {
+            for (int i = 0; i < 5; i++) {
+                imageView[i].setImageResource(R.drawable.star0);
+            }
+        }
+
+        if (finalAmount < 5 && finalAmount >= 0) {
+            switch (finalAmount) {
+                case 0:
+                    imgbtn.setImageResource(R.drawable.emoji5);
+                case 1:
+                    imgbtn.setImageResource(R.drawable.emoji4);
+                case 2:
+                    imgbtn.setImageResource(R.drawable.emoji3);
+                case 3:
+                    imgbtn.setImageResource(R.drawable.emoji2);
+                case 4:
+                    imgbtn.setImageResource(R.drawable.emoji1);
+            }
+        } else if (finalAmount >= 5) {
             imgbtn.setImageResource(R.drawable.emoji1);
-        }else if(finalAmount<0){
+        } else if (finalAmount < 0) {
             imgbtn.setImageResource(R.drawable.emoji5);
+        }
+
+        TreeMap<Integer, Map.Entry<String, Integer>> TopThree = Helper.topThree(dbData);
+
+        TextView firstText = findViewById(R.id.first);
+        Map.Entry<String, Integer> first = TopThree.get(1);
+        if (first == null) {
+            firstText.setText(getString(R.string.first, "-", "-"));
+        } else {
+            firstText.setText(getString(R.string.first, first.getKey(), first.getValue().toString()));
+        }
+
+        TextView secondText = findViewById(R.id.second);
+        Map.Entry<String, Integer> second = TopThree.get(2);
+        if (second == null) {
+            secondText.setText(getString(R.string.second, "-", "-"));
+        } else {
+            secondText.setText(getString(R.string.second, second.getKey(), second.getValue().toString()));
+        }
+
+        TextView thirdText = findViewById(R.id.third);
+        Map.Entry<String, Integer> third = TopThree.get(3);
+        if (third == null) {
+            thirdText.setText(getString(R.string.third, "-", "-"));
+        } else {
+            thirdText.setText(getString(R.string.third, third.getKey(), third.getValue().toString()));
         }
     }
 
