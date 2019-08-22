@@ -26,11 +26,11 @@
             <item
                 android:id="@+id/n_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send Opinions..." />
+                android:title="Recover your Stars" />
             <item
                 android:id="@+id/n_logout"
                 android:icon="@drawable/logout"
-                android:title="Log Out" />
+                android:title="See Tutorial" />
         </menu>
     </item>
 

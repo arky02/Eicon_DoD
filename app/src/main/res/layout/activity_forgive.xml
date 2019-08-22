@@ -11,14 +11,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="별을 채우기 위해 써야하는 명언의 개수"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/txt1"
         android:textSize="20dp"
-        android:text="m"/>
+        android:text="."
+        android:layout_marginTop="100dp"
+        android:textColor="#FF617FCA"
+        android:layout_gravity="center|top"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -50,6 +48,8 @@
             android:text="OK,I will use good words"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
+            android:background="#6673BE"
+            android:textColor="#FFFFFF"
             android:id="@+id/btn_forgive"/>
 
 

@@ -51,7 +51,9 @@ public class SpeechBubble_service extends Service {
                 PixelFormat.TRANSLUCENT);
 
         //여기
-        params.gravity = Gravity.LEFT | Gravity.TOP;
+        params.gravity = Gravity.LEFT | Gravity.CENTER;
+
+        params.y = 20;
         mView = inflate.inflate(R.layout.view_in_service, null);
 
         final TextView textView = (TextView) mView.findViewById(R.id.textView);

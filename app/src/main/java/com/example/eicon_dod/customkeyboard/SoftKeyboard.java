@@ -605,9 +605,9 @@ public class SoftKeyboard extends InputMethodService
             // Handle separator
             if (mComposing.length() > 0) {
 
-                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind","negro","niggar","faggot","fag","bap","bitch","jap","coonass","dago","heime","heimy","himy","honky","nappy","nigger","kraut","hooligan","vandal","barbarian","cannibal","gyp","picnic","eskimo","spaz","moron","hysteria","spinster"};
+                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind","negro","niggar","faggot","fag","bap","bitch","jap","coonass","dago","heime","heimy","himy","honky","nappy","nigger","kraut","hooligan","vandal","barbarian","cannibal","gyp","eskimo","spaz","moron","hysteria","spinster"};
 
-                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind,negro,negro,faggot,faggot,bap,bitch,jap,coonass,dago,heime,heime,heime,honky,nappy,nigger,kraut,hooligan,vandal,barbarian,cannibal,gyp,picnic,eskimo,spaz,moron,hysteria,spinster};
+                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind,negro,negro,faggot,faggot,bap,bitch,jap,coonass,dago,heime,heime,heime,honky,nappy,nigger,kraut,hooligan,vandal,barbarian,cannibal,gyp,eskimo,spaz,moron,hysteria,spinster};
                 for(int i =0 ; i< bad_word.length; i++){
                     if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
                         meaning_badword = word_meaning[i];
@@ -616,16 +616,15 @@ public class SoftKeyboard extends InputMethodService
                         Log.d("meaning_badword ", meaning_badword );
                         Log.d("word_bad ",word_bad );
 
-                        plus++;
 
                         AppDatabase db = AppDatabase.getInstance(this);
                         Data data = new Data(new Timestamp(System.currentTimeMillis()), word_bad);
                         db.dataDAO().insertData(data);
 
                         sharedPreferences = getApplicationContext().getSharedPreferences("badPoint", MODE_PRIVATE);
-                        int badAmount = plus + sharedPreferences.getInt("badPoint",0);
+                        int badAmount = 1 + sharedPreferences.getInt("badPoint",0);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
-                        edit.putInt("badPoint", badAmount );
+                        edit.putInt("badPoint", badAmount);
                         edit.commit();
 
                         isOkay = true;

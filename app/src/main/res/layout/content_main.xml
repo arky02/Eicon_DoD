@@ -77,18 +77,20 @@
         android:id="@+id/greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="34dp"
         android:layout_marginBottom="4dp"
         android:text="@string/greeting"
-        android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textSize="33dp"
+        android:textStyle="bold"
+        android:textColor="#5C6BC0" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:text="You can do better!"
+        android:text="You ARE an upright STAR!"
+        android:textColor="#FF7043"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -96,12 +98,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Weekly Discriminatory Language Usage Graph" />
+            android:text="My Weekly Discriminatory Language Usage Graph"
+            android:textColor="#222222"
+            android:textSize="17dp"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/Linechart"

@@ -23,7 +23,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:textColor="#000000"
+                android:layout_marginBottom="10dp"
+                android:textColor="#2B2B2B"
                 android:text="That's a bad word"
 
                 android:layout_gravity="center|top" />
@@ -31,12 +32,13 @@
             <Button
                 android:id="@+id/bt"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="13dp"
                 android:layout_gravity="center|bottom"
                 android:text="Learn more"
-                android:textColor="#ffffff" />
+                android:background="#A3B2D8"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </FrameLayout>
 

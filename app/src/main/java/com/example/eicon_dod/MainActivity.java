@@ -60,6 +60,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        countStar();
+
+
+    }
+
+    @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i(TAG, "onChartGestureEnd: " + lastPerformedGesture);
     }
@@ -111,8 +120,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "DoD Keyboard Initialized", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(view -> {Snackbar.make(view, "Go to keyboard setting", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+                Intent mintent = new Intent(getApplicationContext(),KeyboardActivation.class);
+                startActivity(mintent);
+        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         imgbtn = findViewById(R.id.imgbtn);
@@ -198,53 +210,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent mintent = new Intent(getApplicationContext(),Forgive.class);
             startActivity(mintent);
         });
-        sharedBad= getSharedPreferences("badPoint", 0);
-        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
-        Log.e("sharedBad", testint.toString());
-        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
 
-
-
-        sharedGood = getSharedPreferences("goodPoint", 0);
-        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
-
-        int finalAmount = goodAmonut-badAmount;
-
-        if (finalAmount>= 5){
-            finalAmount = 5;
-        }
-
-        if(finalAmount>=0){
-
-        for(int i=0;i<finalAmount;i++){
-            imageView[i].setImageResource(R.drawable.star2);
-        }
-        for(int i= finalAmount;i<5;i++) {
-            imageView[i].setImageResource(R.drawable.star0);
-        }
-
-        }else{
-                for(int i= 0;i<5;i++) {
-                    imageView[i].setImageResource(R.drawable.star0);
-
-
-                }
-        }
-
-        if(finalAmount < 5&& finalAmount>=0){
-            switch (finalAmount){
-                case 0: imgbtn.setImageResource(R.drawable.emoji5);
-                case 1: imgbtn.setImageResource(R.drawable.emoji4);
-                case 2 : imgbtn.setImageResource(R.drawable.emoji3);
-                case 3 : imgbtn.setImageResource(R.drawable.emoji2);
-                case 4 : imgbtn.setImageResource(R.drawable.emoji1);
-
-            }
-        }else if(finalAmount>=5){
-            imgbtn.setImageResource(R.drawable.emoji1);
-        }else if(finalAmount<0){
-            imgbtn.setImageResource(R.drawable.emoji5);
-        }
     }
 
     @Override
@@ -274,6 +240,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    public void countStar(){
+
+        sharedBad= getSharedPreferences("badPoint", 0);
+        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
+        Log.e("sharedBad", testint.toString());
+        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
+        sharedGood = getSharedPreferences("goodPoint", 0);
+        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
+
+        int finalAmount = goodAmonut-badAmount;
+
+        if (finalAmount>= 5){
+            finalAmount = 5;
+            //
+        }
+
+        if(finalAmount>=0){
+
+            for(int i=0;i<finalAmount;i++){
+                imageView[i].setImageResource(R.drawable.star2);
+            }
+            for(int i= finalAmount;i<5;i++) {
+                imageView[i].setImageResource(R.drawable.star0);
+            }
+
+        }else{
+            for(int i= 0;i<5;i++) {
+                imageView[i].setImageResource(R.drawable.star0);
+
+
+            }
+        }
+
+        if(finalAmount <= 5 && finalAmount>=0){
+            switch (finalAmount){
+                case 1:
+                    imgbtn.setImageResource(R.drawable.emoji5);
+                    break;
+                case 2: imgbtn.setImageResource(R.drawable.emoji4);
+                    break;
+                case 3 : imgbtn.setImageResource(R.drawable.emoji3);
+                    break;
+                case 4 : imgbtn.setImageResource(R.drawable.emoji2);
+                    break;
+                case 5 : imgbtn.setImageResource(R.drawable.emoji1);
+                    break;
+
+            }
+        }else if(finalAmount>5){
+            imgbtn.setImageResource(R.drawable.emoji1);
+        }else if(finalAmount<0){
+            imgbtn.setImageResource(R.drawable.emoji5);
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -295,8 +316,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(settingIntent);
                 break;
             case R.id.n_send:
+                Intent intent2 = new Intent(getApplicationContext(), Forgive.class);
+                startActivity(intent2);
+
                 break;
             case R.id.n_logout:
+                Intent intent3 = new Intent(getApplicationContext(), KeyboardModification.class);
+                startActivity(intent3);
                 break;
         }
 

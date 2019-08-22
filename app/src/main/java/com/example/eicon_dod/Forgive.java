@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,8 +20,8 @@ public class Forgive extends AppCompatActivity {
     EditText edttext;
     String selectedQuote;
     Integer goodPoint = 0, sharedGoodPoint;
-    SharedPreferences shared;
-    TextView textview1, textview2;
+    SharedPreferences shared,sharedBad,sharedGood;
+    TextView textview1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,25 @@ public class Forgive extends AppCompatActivity {
         edttext = findViewById(R.id.forgive_edt);
         textview1 = findViewById(R.id.txt1);
 
+
+        sharedBad= getSharedPreferences("badPoint", 0);
+        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
+        Log.e("sharedBad", testint.toString());
+        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
+        sharedGood = getSharedPreferences("goodPoint", 0);
+        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
+
+        Integer finalAmount = goodAmonut-badAmount;
+        String string = Integer.toString(5 - finalAmount);
+        textview1.setText("You should text " +string+ " more sentences to be a STAR");
+
+
+
         String quoteList[] = {"A word of kindness is better than a fat pie", "A soft answer turneth away wrath.", "Discretion is the greater part of valor.", "The right word is always a power, and communicates its definiteness to our action.", "Words are soldiers of fortune, hired by different ideas.", "By words we learn thoughts, and by thoughts we learn life.", "For me, words are a form of action, capable of influencing change. Their articulation represents a complete, lived experience", "Good words are worth much, and cost little"};
         ArrayAdapter listadapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quoteList);
         spinner.setAdapter(listadapter);
 
-        SharedPreferences sharedBad = getSharedPreferences("badPoint", 0);
-        Integer badAmount = (sharedBad.getInt("badPoint", 0)) / 5;
-        textview1.setText(badAmount.toString());
+        textview1.setText(finalAmount.toString());
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -50,6 +63,8 @@ public class Forgive extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+                selectedQuote = quoteList[0];
+
             }
         });
 
@@ -60,15 +75,14 @@ public class Forgive extends AppCompatActivity {
                 edttext.setText("");
                 shared = getApplicationContext().getSharedPreferences("goodPoint", MODE_PRIVATE);
                 ++goodPoint;
+
                 sharedGoodPoint = shared.getInt("goodPoint", 0);
 
                 SharedPreferences.Editor edit = shared.edit();
                 edit.putInt("goodPoint", sharedGoodPoint + goodPoint);
                 edit.commit();
-                textview1.setText(badAmount-goodPoint);
-
-
-
+                String string1 = Integer.toString(5 - finalAmount);
+                textview1.setText("You should text " +string1+ " more sentences to be a STAR");
             }
 
         });
