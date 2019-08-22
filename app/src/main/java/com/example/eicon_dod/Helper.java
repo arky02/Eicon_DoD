@@ -67,10 +67,10 @@ public class Helper {
         return getSomeEntries(3, result);
     }
 
-    public static TreeMap<Integer, Map.Entry<String, Integer>> getSomeEntries(int max, TreeMap<String,Integer> source) {
+    public static TreeMap<Integer, Map.Entry<String, Integer>> getSomeEntries(int max, TreeMap<String, Integer> source) {
         int count = 0;
         TreeMap<Integer, Map.Entry<String, Integer>> target = new TreeMap<>();
-        for (Map.Entry<String, Integer> entry:source.entrySet()) {
+        for (Map.Entry<String, Integer> entry : source.entrySet()) {
             if (count >= max) break;
 
             target.put(count, entry);

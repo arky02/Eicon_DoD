@@ -58,34 +58,24 @@ import static com.example.eicon_dod.Data_meanings.Derp;
 import static com.example.eicon_dod.Data_meanings.Lame;
 import static com.example.eicon_dod.Data_meanings.OCD;
 import static com.example.eicon_dod.Data_meanings.Retarded;
-import static com.example.eicon_dod.Data_meanings.abos;
-import static com.example.eicon_dod.Data_meanings.anorexic;
 import static com.example.eicon_dod.Data_meanings.bap;
 import static com.example.eicon_dod.Data_meanings.barbarian;
-import static com.example.eicon_dod.Data_meanings.bastard;
-import static com.example.eicon_dod.Data_meanings.bimbo;
 import static com.example.eicon_dod.Data_meanings.bitch;
 import static com.example.eicon_dod.Data_meanings.bug;
-import static com.example.eicon_dod.Data_meanings.cankles;
 import static com.example.eicon_dod.Data_meanings.cannibal;
 import static com.example.eicon_dod.Data_meanings.chairman;
 import static com.example.eicon_dod.Data_meanings.clergyman;
 import static com.example.eicon_dod.Data_meanings.colored;
 import static com.example.eicon_dod.Data_meanings.coonass;
 import static com.example.eicon_dod.Data_meanings.crazy;
-import static com.example.eicon_dod.Data_meanings.cunt;
 import static com.example.eicon_dod.Data_meanings.dago;
-import static com.example.eicon_dod.Data_meanings.downly;
 import static com.example.eicon_dod.Data_meanings.eskimo;
 import static com.example.eicon_dod.Data_meanings.exotic;
 import static com.example.eicon_dod.Data_meanings.faggot;
 import static com.example.eicon_dod.Data_meanings.foreman;
-import static com.example.eicon_dod.Data_meanings.fuck;
-import static com.example.eicon_dod.Data_meanings.ganga;
 import static com.example.eicon_dod.Data_meanings.ghetto;
 import static com.example.eicon_dod.Data_meanings.gyp;
 import static com.example.eicon_dod.Data_meanings.heime;
-import static com.example.eicon_dod.Data_meanings.hoe;
 import static com.example.eicon_dod.Data_meanings.honky;
 import static com.example.eicon_dod.Data_meanings.hooligan;
 import static com.example.eicon_dod.Data_meanings.hysteria;
@@ -97,26 +87,18 @@ import static com.example.eicon_dod.Data_meanings.mai;
 import static com.example.eicon_dod.Data_meanings.mankind;
 import static com.example.eicon_dod.Data_meanings.miss;
 import static com.example.eicon_dod.Data_meanings.moron;
-import static com.example.eicon_dod.Data_meanings.motherfucker;
 import static com.example.eicon_dod.Data_meanings.mrs;
 import static com.example.eicon_dod.Data_meanings.nappy;
 import static com.example.eicon_dod.Data_meanings.negro;
 import static com.example.eicon_dod.Data_meanings.nigger;
-import static com.example.eicon_dod.Data_meanings.pakis;
 import static com.example.eicon_dod.Data_meanings.picnic;
-import static com.example.eicon_dod.Data_meanings.puta;
-import static com.example.eicon_dod.Data_meanings.ranga;
 import static com.example.eicon_dod.Data_meanings.sis;
-import static com.example.eicon_dod.Data_meanings.slut;
 import static com.example.eicon_dod.Data_meanings.spaz;
-import static com.example.eicon_dod.Data_meanings.spinner;
 import static com.example.eicon_dod.Data_meanings.spinster;
 import static com.example.eicon_dod.Data_meanings.tranny;
-import static com.example.eicon_dod.Data_meanings.twat;
 import static com.example.eicon_dod.Data_meanings.uppityy;
 import static com.example.eicon_dod.Data_meanings.vandal;
 import static com.example.eicon_dod.Data_meanings.whi;
-import static com.example.eicon_dod.Data_meanings.whore;
 import static com.example.eicon_dod.SpeechBubble_checkpermission.isPermissionOkay;
 
 /**
@@ -145,7 +127,7 @@ public class SoftKeyboard extends InputMethodService
     public static boolean isOkay = false;
     public static boolean isTextReady = false;
     SharedPreferences sharedPreferences;
-    int plus=0;
+    int plus = 0;
 
     private InputMethodManager mInputMethodManager;
 
@@ -580,11 +562,7 @@ public class SoftKeyboard extends InputMethodService
      * Helper to determine if a given character code is alphabetic.
      */
     private boolean isAlphabet(int code) {
-        if (Character.isLetter(code)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Character.isLetter(code);
     }
 
     /**
@@ -623,16 +601,15 @@ public class SoftKeyboard extends InputMethodService
             // Handle separator
             if (mComposing.length() > 0) {
 
-                String bad_word[] ={"sissy","maiden","whipped","jipped","gypped","bugger","lame","retarded","colored","OCD","derp","crazy","insane","tranny","exotic","ghetto","uppity","miss","mrs","chairman","clergyman","foreman","mankind","negro","niggar","faggot","fag","bap","bitch","jap","coonass","dago","heime","heimy","himy","honky","nappy","nigger","kraut","hooligan","vandal","barbarian","cannibal","gyp","eskimo","spaz","moron","hysteria","spinster","hoe","slut","ganga","downly","spinner","cunt","pakis","twat","ranga","bimbo","abos","whore","anorexic","motherfucker","cankles","bastard","puta","fuck"};
-
-                String word_meaning[] = {sis,mai,whi,jipgyp,jipgyp,bug,Lame,Retarded,colored,OCD,Derp,crazy,insane,tranny,exotic,ghetto,uppityy,miss,mrs,chairman,clergyman,foreman,mankind,negro,negro,faggot,faggot,bap,bitch,jap,coonass,dago,heime,heime,heime,honky,nappy,nigger,kraut,hooligan,vandal,barbarian,cannibal,gyp,eskimo,spaz,moron,hysteria,spinster,hoe,slut,ganga,downly,spinner,cunt,pakis,twat,ranga,bimbo,abos,whore,anorexic,motherfucker,cankles,bastard,puta,fuck};
-                for(int i =0 ; i< bad_word.length; i++){
-                    if(mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0){
+                String[] bad_word = {"sissy", "maiden", "whipped", "jipped", "gypped", "bugger", "lame", "retarded", "colored", "OCD", "derp", "crazy", "insane", "tranny", "exotic", "ghetto", "uppity", "miss", "mrs", "chairman", "clergyman", "foreman", "mankind", "negro", "niggar", "faggot", "fag", "bap", "bitch", "jap", "coonass", "dago", "heime", "heimy", "himy", "honky", "nappy", "nigger", "kraut", "hooligan", "vandal", "barbarian", "cannibal", "gyp", "eskimo", "spaz", "moron", "hysteria", "spinster"};
+                String[] word_meaning = {sis, mai, whi, jipgyp, jipgyp, bug, Lame, Retarded, colored, OCD, Derp, crazy, insane, tranny, exotic, ghetto, uppityy, miss, mrs, chairman, clergyman, foreman, mankind, negro, negro, faggot, faggot, bap, bitch, jap, coonass, dago, heime, heime, heime, honky, nappy, nigger, kraut, hooligan, vandal, barbarian, cannibal, gyp, eskimo, spaz, moron, hysteria, spinster};
+                for (int i = 0; i < bad_word.length; i++) {
+                    if (mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0) {
                         meaning_badword = word_meaning[i];
                         word_bad = bad_word[i];
 
-                        Log.d("meaning_badword ", meaning_badword );
-                        Log.d("word_bad ",word_bad );
+                        Log.d("meaning_badword ", meaning_badword);
+                        Log.d("word_bad ", word_bad);
 
 
                         AppDatabase db = AppDatabase.getInstance(this);
@@ -640,26 +617,26 @@ public class SoftKeyboard extends InputMethodService
                         db.dataDAO().insertData(data);
 
                         sharedPreferences = getApplicationContext().getSharedPreferences("badPoint", MODE_PRIVATE);
-                        int badAmount = 1 + sharedPreferences.getInt("badPoint",0);
+                        int badAmount = 1 + sharedPreferences.getInt("badPoint", 0);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
                         edit.putInt("badPoint", badAmount);
                         edit.commit();
 
                         isOkay = true;
 
-                        if(isPermissionOkay) {
+                        if (isPermissionOkay) {
                             startService(new Intent(getApplicationContext(), SpeechBubble_service.class));
-                        }else{
+                        } else {
                             Toast.makeText(this, "다른 앱 위에 표시되는 앱 사용 권한을 수락해야 합니다", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
-                Log.e("Test","KEYBOARDWORD: " + mComposing.toString());
+                Log.e("Test", "KEYBOARDWORD: " + mComposing.toString());
                 commitTyped(getCurrentInputConnection());
             }
 
             sendKey(primaryCode);
-            
+
             updateShiftKeyState(getCurrentInputEditorInfo());
         } else if (primaryCode == Keyboard.KEYCODE_DELETE) {
             handleBackspace();
@@ -692,7 +669,7 @@ public class SoftKeyboard extends InputMethodService
         if (ic == null) return;
         ic.beginBatchEdit();
         if (mComposing.length() > 0) {
-           // Log.d("KEYBOARDTEXT",toString(mComposing));
+            // Log.d("KEYBOARDTEXT",toString(mComposing));
             commitTyped(ic);
         }
         ic.commitText(text, 0);
@@ -707,8 +684,8 @@ public class SoftKeyboard extends InputMethodService
      */
     private void updateCandidates() {
         if (!mCompletionOn) {
-                setSuggestions(null, false, false);
-            }
+            setSuggestions(null, false, false);
+        }
 
     }
 
@@ -776,7 +753,7 @@ public class SoftKeyboard extends InputMethodService
         } else {
             getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1);
 
-           // Log.d("handleCharacter",getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1));
+            // Log.d("handleCharacter",getCurrentInputConnection().commitText(String.valueOf((char) primaryCode), 1));
         }
     }
 
@@ -818,7 +795,7 @@ public class SoftKeyboard extends InputMethodService
 
     public boolean isWordSeparator(int code) {
         String separators = getWordSeparators();
-        return separators.contains(String.valueOf((char)code));
+        return separators.contains(String.valueOf((char) code));
     }
 
     public void pickDefaultCandidate() {
@@ -870,8 +847,10 @@ public class SoftKeyboard extends InputMethodService
     public void onRelease(int primaryCode) {
 
     }
+
     /**
      * http://www.tutorialspoint.com/android/android_spelling_checker.htm
+     *
      * @param results results
      */
     @Override
@@ -891,6 +870,7 @@ public class SoftKeyboard extends InputMethodService
         }
         Log.d("SoftKeyboard", "SUGGESTIONS: " + sb.toString());
     }
+
     private static final int NOT_A_LENGTH = -1;
 
     private void dumpSuggestionsInfoInternal(

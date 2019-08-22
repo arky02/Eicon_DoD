@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ImageButton imgbtn;
     private LineChart mChart;
-    SharedPreferences sharedBad,sharedGood;
+    SharedPreferences sharedBad, sharedGood;
     ImageView[] imageView = new ImageView[5];
     List<Data> dbData;
 
@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         ArrayList<Entry> yValues = new ArrayList<>();
         countStar();
-
 
         AppDatabase db = AppDatabase.getInstance(this);
         List<Data> dbData = db.dataDAO().getDataList();
@@ -98,8 +97,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-    }
+        Log.i(TAG, "onChartGestureStart: X: " + me.getX() + "Y: " + me.getY());
 
+    }
 
     @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -153,10 +153,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {Snackbar.make(view, "Go to keyboard setting", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-                Intent mintent = new Intent(getApplicationContext(),KeyboardActivation.class);
-                startActivity(mintent);
+        fab.setOnClickListener(view -> {
+            Snackbar.make(view, "Go to keyboard setting", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            Intent mintent = new Intent(getApplicationContext(), KeyboardActivation.class);
+            startActivity(mintent);
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -238,6 +239,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         xAxis.setGranularity(1);
         xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
 
+        TreeMap<Integer, Map.Entry<String, Integer>> TopThree = Helper.topThree(dbData);
+
+        TextView firstText = findViewById(R.id.first);
+        Map.Entry<String, Integer> first = TopThree.get(1);
+        if (first == null) {
+            firstText.setText(getString(R.string.first, "-", "-"));
+        } else {
+            firstText.setText(getString(R.string.first, first.getKey(), first.getValue().toString()));
+        }
+
+        TextView secondText = findViewById(R.id.second);
+        Map.Entry<String, Integer> second = TopThree.get(2);
+        if (second == null) {
+            secondText.setText(getString(R.string.second, "-", "-"));
+        } else {
+            secondText.setText(getString(R.string.second, second.getKey(), second.getValue().toString()));
+        }
+
+        TextView thirdText = findViewById(R.id.third);
+        Map.Entry<String, Integer> third = TopThree.get(3);
+        if (third == null) {
+            thirdText.setText(getString(R.string.third, "-", "-"));
+        } else {
+            thirdText.setText(getString(R.string.third, third.getKey(), third.getValue().toString()));
+        }
 
         imgbtn.setOnClickListener(view -> {
             Intent mintent = new Intent(getApplicationContext(), Forgive.class);
@@ -287,6 +313,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
         Log.e("sharedBad", testint.toString());
         Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
+
+
+
         sharedGood = getSharedPreferences("goodPoint", 0);
         Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
 
@@ -294,7 +323,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (finalAmount>= 5){
             finalAmount = 5;
-            //
         }
 
         if(finalAmount>=0){
@@ -329,36 +357,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
 
             }
-        }else if(finalAmount>=5){
+        }else if(finalAmount>5){
             imgbtn.setImageResource(R.drawable.emoji1);
         }else if(finalAmount<0){
             imgbtn.setImageResource(R.drawable.emoji5);
-        }
-
-        TreeMap<Integer, Map.Entry<String, Integer>> TopThree = Helper.topThree(dbData);
-
-        TextView firstText = findViewById(R.id.first);
-        Map.Entry<String, Integer> first = TopThree.get(1);
-        if (first == null) {
-            firstText.setText(getString(R.string.first, "-", "-"));
-        } else {
-            firstText.setText(getString(R.string.first, first.getKey(), first.getValue().toString()));
-        }
-
-        TextView secondText = findViewById(R.id.second);
-        Map.Entry<String, Integer> second = TopThree.get(2);
-        if (second == null) {
-            secondText.setText(getString(R.string.second, "-", "-"));
-        } else {
-            secondText.setText(getString(R.string.second, second.getKey(), second.getValue().toString()));
-        }
-
-        TextView thirdText = findViewById(R.id.third);
-        Map.Entry<String, Integer> third = TopThree.get(3);
-        if (third == null) {
-            thirdText.setText(getString(R.string.third, "-", "-"));
-        } else {
-            thirdText.setText(getString(R.string.third, third.getKey(), third.getValue().toString()));
         }
     }
 

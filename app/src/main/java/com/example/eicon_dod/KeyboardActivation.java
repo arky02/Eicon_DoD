@@ -20,9 +20,9 @@ public class KeyboardActivation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.keyboard_activation);
 
-        btStep1 = (Button) findViewById(R.id.bt_step_1);
-        btStep2 = (Button) findViewById(R.id.bt_step_2);
-        btEnd = (Button) findViewById(R.id.bt_end);
+        btStep1 = findViewById(R.id.bt_step_1);
+        btStep2 = findViewById(R.id.bt_step_2);
+        btEnd = findViewById(R.id.bt_end);
 
         btStep1.setOnClickListener(new View.OnClickListener() {
             @Override
