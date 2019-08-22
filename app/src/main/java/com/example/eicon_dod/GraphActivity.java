@@ -1,11 +1,11 @@
 package com.example.eicon_dod;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eicon_dod.Database.AppDatabase;
 import com.example.eicon_dod.Database.Data;

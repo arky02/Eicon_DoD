@@ -27,7 +27,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.eicon_dod.R;
-import com.example.eicon_dod.customkeyboard.SoftKeyboard;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -27,9 +27,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import com.example.eicon_dod.android.inputmethodcommon.InputMethodSettingsImpl;
-import com.example.eicon_dod.android.inputmethodcommon.InputMethodSettingsInterface;
-
 /**
  * This is a helper class for an IME's settings preference fragment. It's recommended for every
  * IME to have its own settings preference fragment which inherits this class.
