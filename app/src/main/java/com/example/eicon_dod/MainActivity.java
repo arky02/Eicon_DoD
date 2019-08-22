@@ -174,6 +174,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView greeting = findViewById(R.id.greeting);
         greeting.setText(getString(R.string.greeting, name));
 
+
+
         mChart = (LineChart) findViewById(R.id.Linechart);
 
         mChart.setOnChartGestureListener(this);
@@ -198,8 +200,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AppDatabase db = AppDatabase.getInstance(this);
         List<Data> dbData = db.dataDAO().getDataList();
         List<Data> filteredData = Helper.filterDate(dbData);
-        Log.e("GRAPH", filteredData.toString());
-
 
         yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
         yValues.add(new Entry(2, Helper.countOccurrence(filteredData, true, "Mon")));
@@ -326,6 +326,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile", MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", "John Doe");
+        Log.e("NAV", name);
+        TextView navName = findViewById(R.id.nav_name);
+        navName.setText(name);
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -343,6 +348,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
         int id = item.getItemId();
         switch (id) {
             case R.id.n_profile:

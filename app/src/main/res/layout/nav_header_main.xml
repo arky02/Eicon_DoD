@@ -22,10 +22,10 @@
         android:layout_marginTop="20dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nav_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gil Dong"
+        android:text="@string/nav_name"
         android:textColor="#FFFFFFFF"
         android:textSize="21sp" />
 
