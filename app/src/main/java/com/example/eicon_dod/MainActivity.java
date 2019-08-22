@@ -243,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (first == null) {
             firstText.setText(getString(R.string.first, "-", "-"));
         } else {
+            Log.e( "BLA",first.getValue().toString());
             firstText.setText(getString(R.string.first, first.getKey(), first.getValue().toString()));
         }
 
