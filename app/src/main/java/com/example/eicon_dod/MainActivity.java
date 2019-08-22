@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView greeting = findViewById(R.id.greeting);
         greeting.setText(getString(R.string.greeting, name));
 
-        mChart = (LineChart) findViewById(R.id.Linechart);
+        mChart = findViewById(R.id.Linechart);
 
         mChart.setOnChartGestureListener(this);
         mChart.setOnChartValueSelectedListener(this);
@@ -270,8 +270,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(mintent);
         });
 
-    }
+        countStar();
 
+    }
 
 
     @Override
@@ -307,59 +308,60 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void countStar(){
+    public void countStar() {
 
-        sharedBad= getSharedPreferences("badPoint", 0);
-        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
-        Log.e("sharedBad", testint.toString());
-        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
-
+        sharedBad = getSharedPreferences("badPoint", 0);
+        Integer badAmount = sharedBad.getInt("badPoint", 0) / 5;
 
 
         sharedGood = getSharedPreferences("goodPoint", 0);
-        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
+        Integer goodAmount = sharedGood.getInt("goodPoint", 0) + 5;
 
-        int finalAmount = goodAmonut-badAmount;
+        int finalAmount = goodAmount - badAmount;
 
-        if (finalAmount>= 5){
+        if (finalAmount >= 5) {
             finalAmount = 5;
         }
 
-        if(finalAmount>=0){
+        if (finalAmount >= 0) {
 
-            for(int i=0;i<finalAmount;i++){
+            for (int i = 0; i < finalAmount; i++) {
                 imageView[i].setImageResource(R.drawable.star2);
             }
-            for(int i= finalAmount;i<5;i++) {
+            for (int i = finalAmount; i < 5; i++) {
                 imageView[i].setImageResource(R.drawable.star0);
             }
 
-        }else{
-            for(int i= 0;i<5;i++) {
+        } else {
+            for (int i = 0; i < 5; i++) {
                 imageView[i].setImageResource(R.drawable.star0);
 
 
             }
         }
 
-        if(finalAmount <= 5 && finalAmount>=0){
-            switch (finalAmount){
+        if (finalAmount <= 5 && finalAmount >= 0) {
+            switch (finalAmount) {
                 case 1:
                     imgbtn.setImageResource(R.drawable.emoji5);
                     break;
-                case 2: imgbtn.setImageResource(R.drawable.emoji4);
+                case 2:
+                    imgbtn.setImageResource(R.drawable.emoji4);
                     break;
-                case 3 : imgbtn.setImageResource(R.drawable.emoji3);
+                case 3:
+                    imgbtn.setImageResource(R.drawable.emoji3);
                     break;
-                case 4 : imgbtn.setImageResource(R.drawable.emoji2);
+                case 4:
+                    imgbtn.setImageResource(R.drawable.emoji2);
                     break;
-                case 5 : imgbtn.setImageResource(R.drawable.emoji1);
+                case 5:
+                    imgbtn.setImageResource(R.drawable.emoji1);
                     break;
 
             }
-        }else if(finalAmount>5){
+        } else if (finalAmount > 5) {
             imgbtn.setImageResource(R.drawable.emoji1);
-        }else if(finalAmount<0){
+        } else if (finalAmount < 0) {
             imgbtn.setImageResource(R.drawable.emoji5);
         }
     }
