@@ -7,17 +7,4 @@
     tools:context=".SpeechBubble_checkpermission"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_start"
-        android:text="start" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_stop"
-        android:text="stop" />
-
 </LinearLayout>

@@ -81,6 +81,9 @@ public class SpeechBubble_checkpermission extends AppCompatActivity {
                     isPermissionOkay = true;
                     Intent mintent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(mintent);
+                } else {
+                    Intent grantIntent = new Intent(getApplicationContext(), FirstActivity.class);
+                    startActivity(grantIntent);
                 }
             }
         }
