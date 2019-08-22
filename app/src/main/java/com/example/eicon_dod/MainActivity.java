@@ -52,14 +52,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     ImageButton imgbtn;
     private LineChart mChart;
-    SharedPreferences sharedBad, sharedGood;
+    SharedPreferences sharedBad,sharedGood;
     ImageView[] imageView = new ImageView[5];
+    List<Data> dbData;
+
 
     @Override
     protected void onResume() {
         super.onResume();
         ArrayList<Entry> yValues = new ArrayList<>();
         countStar();
+
 
         AppDatabase db = AppDatabase.getInstance(this);
         List<Data> dbData = db.dataDAO().getDataList();
@@ -95,9 +98,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
-        Log.i(TAG, "onChartGestureStart: X: " + me.getX() + "Y: " + me.getY());
-
     }
+
 
     @Override
     public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -244,18 +246,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile", MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", "John Doe");
+        Log.e("NAV", name);
+        TextView navName = findViewById(R.id.nav_name);
+        navName.setText(name);
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -271,15 +270,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public void countStar(){
 
         sharedBad= getSharedPreferences("badPoint", 0);
         Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
         Log.e("sharedBad", testint.toString());
         Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
-
-
-
         sharedGood = getSharedPreferences("goodPoint", 0);
         Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
 
@@ -287,6 +294,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (finalAmount>= 5){
             finalAmount = 5;
+            //
         }
 
         if(finalAmount>=0){
@@ -321,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     break;
 
             }
-        }else if(finalAmount>5){
+        }else if(finalAmount>=5){
             imgbtn.setImageResource(R.drawable.emoji1);
         }else if(finalAmount<0){
             imgbtn.setImageResource(R.drawable.emoji5);
@@ -354,37 +362,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile", MODE_PRIVATE);
-        String name = sharedPreferences.getString("name", "John Doe");
-        Log.e("NAV", name);
-        TextView navName = findViewById(R.id.nav_name);
-        navName.setText(name);
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

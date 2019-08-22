@@ -47,5 +47,23 @@ public class Data_meanings {
     public static String moron = "It means 'a psychological diagnosis denotinf a mild disability', so it is an ableism word.";
     public static String hysteria = "This term's origin is related to sexism. Doctors used this word as a medical explanation for nearly every sick woman they encountered. The idea for such a diagnosis comes from belief that a woman's hysteria is caused by a 'wandering uterus' that is deprived of sexual pleasure.";
     public static String spinster = "It meant a person who spun yard or thread for a living. But it is used to call an unmarried, lower-class woman.";
+    public static String hoe = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String slut = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String ganga = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String downly = "It's an ableist expression means someone with Downs Syndrome. You shouldn't use somebody's disability as an insult";
+    public static String spinner = "It's a sexist expression means a woman so thin that she can be spun in a circle on an erect penis";
+    public static String cunt = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String pakis = "It's a racist expression. It's a rude abbreviation of the world 'pakistani'";
+    public static String twat = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String ranga = "It's a racist expression that belittles a person who has red or orange hair";
+    public static String bimbo = "It's a sexist expression means a physically attractive but unintelligent";
+    public static String abos = "It's a both racist and sexist expression means a black guy in straya that just wants some of your petrol you find them around centrelink with one thong.";
+    public static String whore = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String anorexic = "It's an ableist word means a person suffering from a disease called anorexia which is sometimes shortened as ana . It would be rude to use this word as an insult.";
+    public static String motherfucker = "It's a sexist expression considering a woman a man's property";
+    public static String cankles = "It's a both ableist and sexist expression means the area in affected female legs where the calf meets the foot in an abrupt. You shouldn't use somebody's disease as an insult.";
+    public static String bastard = "It means a child born out of wedlock, but it doesn't count if it was a woman who committed adultry";
+    public static String puta = "It's a sexist expression means a girl sleeps with a lot of guys";
+    public static String fuck = "It's not discriminatory but it is inappropriate. Try using other nice term";
 
 }
