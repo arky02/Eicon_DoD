@@ -18,7 +18,7 @@ public class FirstActivity extends AppCompatActivity {
         btnfirst = findViewById(R.id.btnfirst);
 
         btnfirst.setOnClickListener(view -> {
-            Intent mn = new Intent(getApplicationContext(),SpeechBubble_service.class);
+            Intent mn = new Intent(getApplicationContext(),SpeechBubble_checkpermission.class);
             startActivity(mn);
             finish();
         });

@@ -14,14 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Tutorial"></activity>
-        <activity android:name=".FirstActivity" />
-        <activity android:name=".Forgive" />
-        <activity android:name=".SpeechBubble_checkpermission">
+        <activity android:name=".FirstActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Forgive" />
+        <activity android:name=".SpeechBubble_checkpermission">
+
         </activity>
         <activity android:name=".GraphActivity" />
         <activity android:name=".KeyboardActivation" />

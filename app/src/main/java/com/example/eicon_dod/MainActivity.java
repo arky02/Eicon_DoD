@@ -21,6 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.eicon_dod.Database.AppDatabase;
 import com.example.eicon_dod.Database.Data;
+import com.example.eicon_dod.Database.TimestampConverter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -288,6 +289,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+
+            Intent min = new Intent(getApplicationContext(), Tutorial.class);
+            startActivity(min);
             return true;
         }
 
@@ -390,7 +394,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 break;
             case R.id.n_logout:
-                Intent intent3 = new Intent(getApplicationContext(), KeyboardModification.class);
+                Intent intent3 = new Intent(getApplicationContext(), Tutorial.class);
                 startActivity(intent3);
                 break;
         }
