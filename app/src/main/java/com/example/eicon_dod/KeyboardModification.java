@@ -12,7 +12,7 @@ import com.example.eicon_dod.customkeyboard.ImePreferences;
 import com.example.eicon_dod.customkeyboard.LatinKeyboard;
 import com.example.eicon_dod.customkeyboard.SoftKeyboard;
 
-public class KeyboardModification extends AppCompatActivity  {
+public class KeyboardModification extends AppCompatActivity {
 
     SeekBar seekBar;
     Integer finalResult = null;

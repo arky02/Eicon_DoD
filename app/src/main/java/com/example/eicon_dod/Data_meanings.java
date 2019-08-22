@@ -31,7 +31,7 @@ public class Data_meanings {
     public static String jap = "It's a racism word. It can be uncomplimentary shorthand for 'Japanese' or acronym for 'Jewish American Princess', female of Jewish descent with an attitude.";
     public static String coonass = "It's a term used in reference to descendants of French-speaking Louisianans, or Cajuns. Some Cajuns use it with pride and find it inoffensive, while others consider it an ethnic slur.";
     public static String dago = "It means person of Italian descent. It can be derogatory only if it's used by non-Italians.";
-    public static String heime ="It means individual of Jewish descent. It is definitely not complimentary.";
+    public static String heime = "It means individual of Jewish descent. It is definitely not complimentary.";
     public static String honky = "It's a derisive term for \"white person\", as used by blacks.";
     public static String nappy = "Meaning tight, curly hair.  Generally associated with persons of color, particularly those of black or African descent.  Not particularly derogatory; often used by blacks to refer to hair type.  Often used by black mothers when admonishing their children, as in \"Bring your nappy head in here right now!\"  White school teachers, however, must not use this word.";
     public static String nigger = "Oppressed individual usually cast as a powerless scapegoat, regardless of race; very derogatory term for a person of black or African heritage.";

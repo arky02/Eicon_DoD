@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LineChart mChart;
     SharedPreferences sharedBad, sharedGood;
     ImageView[] imageView = new ImageView[5];
+    List<Data> dbData;
 
     @Override
     protected void onResume() {
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         countStar();
 
         AppDatabase db = AppDatabase.getInstance(this);
-        List<Data> dbData = db.dataDAO().getDataList();
+        dbData = db.dataDAO().getDataList();
         List<Data> filteredData = Helper.filterDate(dbData);
 
         yValues.add(new Entry(1, Helper.countOccurrence(filteredData, true, "Sun")));
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i(TAG, "onChartGestureStart: X: " + me.getX() + "Y: " + me.getY());
-
     }
 
     @Override
@@ -151,10 +151,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {Snackbar.make(view, "Go to keyboard setting", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-                Intent mintent = new Intent(getApplicationContext(),KeyboardActivation.class);
-                startActivity(mintent);
+        fab.setOnClickListener(view -> {
+            Snackbar.make(view, "Go to keyboard setting", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            Intent mintent = new Intent(getApplicationContext(), KeyboardActivation.class);
+            startActivity(mintent);
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -244,86 +245,62 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+    public void countStar() {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void countStar(){
-
-        sharedBad= getSharedPreferences("badPoint", 0);
-        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
+        sharedBad = getSharedPreferences("badPoint", 0);
+        Integer testint = new Integer(sharedBad.getInt("badPoint", 0));
         Log.e("sharedBad", testint.toString());
-        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
-
+        Integer badAmount = sharedBad.getInt("badPoint", 0) / 5;
 
 
         sharedGood = getSharedPreferences("goodPoint", 0);
-        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
+        Integer goodAmonut = sharedGood.getInt("goodPoint", 0) + 5;
 
-        int finalAmount = goodAmonut-badAmount;
+        int finalAmount = goodAmonut - badAmount;
 
-        if (finalAmount>= 5){
+        if (finalAmount >= 5) {
             finalAmount = 5;
         }
 
-        if(finalAmount>=0){
+        if (finalAmount >= 0) {
 
-            for(int i=0;i<finalAmount;i++){
+            for (int i = 0; i < finalAmount; i++) {
                 imageView[i].setImageResource(R.drawable.star2);
             }
-            for(int i= finalAmount;i<5;i++) {
+            for (int i = finalAmount; i < 5; i++) {
                 imageView[i].setImageResource(R.drawable.star0);
             }
 
-        }else{
-            for(int i= 0;i<5;i++) {
+        } else {
+            for (int i = 0; i < 5; i++) {
                 imageView[i].setImageResource(R.drawable.star0);
 
 
             }
         }
 
-        if(finalAmount <= 5 && finalAmount>=0){
-            switch (finalAmount){
+        if (finalAmount <= 5 && finalAmount >= 0) {
+            switch (finalAmount) {
                 case 1:
                     imgbtn.setImageResource(R.drawable.emoji5);
                     break;
-                case 2: imgbtn.setImageResource(R.drawable.emoji4);
+                case 2:
+                    imgbtn.setImageResource(R.drawable.emoji4);
                     break;
-                case 3 : imgbtn.setImageResource(R.drawable.emoji3);
+                case 3:
+                    imgbtn.setImageResource(R.drawable.emoji3);
                     break;
-                case 4 : imgbtn.setImageResource(R.drawable.emoji2);
+                case 4:
+                    imgbtn.setImageResource(R.drawable.emoji2);
                     break;
-                case 5 : imgbtn.setImageResource(R.drawable.emoji1);
+                case 5:
+                    imgbtn.setImageResource(R.drawable.emoji1);
                     break;
 
             }
-        }else if(finalAmount>5){
+        } else if (finalAmount > 5) {
             imgbtn.setImageResource(R.drawable.emoji1);
-        }else if(finalAmount<0){
+        } else if (finalAmount < 0) {
             imgbtn.setImageResource(R.drawable.emoji5);
         }
 

@@ -63,9 +63,11 @@ public class LatinKeyboard extends Keyboard {
                          CharSequence characters, int columns, int horizontalPadding) {
         super(context, layoutTemplateResId, characters, columns, horizontalPadding);
     }
+
     public void setKeyHeight(int size) {
         super.setKeyHeight(size);
     }
+
     @Override
     protected Key createKeyFromXml(Resources res, Row parent, int x, int y,
                                    XmlResourceParser parser) {
