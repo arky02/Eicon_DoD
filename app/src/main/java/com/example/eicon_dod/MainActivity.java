@@ -35,6 +35,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.MotionEvent;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.sql.Timestamp;
@@ -45,7 +47,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnChartGestureListener, OnChartValueSelectedListener {
     private static final String TAG = "MainActivity";
 
+    ImageButton imgbtn;
     private LineChart mChart;
+    SharedPreferences sharedBad,sharedGood;
+    ImageView[] imageView = new ImageView[5];
+
 
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -109,6 +115,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setAction("Action", null).show());
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        imgbtn = findViewById(R.id.imgbtn);
+
+        imageView[0] = findViewById(R.id.star1);
+        imageView[1] = findViewById(R.id.star2);
+        imageView[2] = findViewById(R.id.star3);
+        imageView[3] = findViewById(R.id.star4);
+        imageView[4] = findViewById(R.id.star5);
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -177,6 +192,59 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         xAxis.setValueFormatter(new MyAxisValueFormatter(values));
         xAxis.setGranularity(1);
         xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
+
+
+        imgbtn.setOnClickListener(view -> {
+            Intent mintent = new Intent(getApplicationContext(),Forgive.class);
+            startActivity(mintent);
+        });
+        sharedBad= getSharedPreferences("badPoint", 0);
+        Integer testint= new Integer(sharedBad.getInt("badPoint", 0));
+        Log.e("sharedBad", testint.toString());
+        Integer badAmount = sharedBad.getInt("badPoint", 0)/5;
+
+
+
+        sharedGood = getSharedPreferences("goodPoint", 0);
+        Integer goodAmonut = sharedGood.getInt("goodPoint", 0)+5;
+
+        int finalAmount = goodAmonut-badAmount;
+
+        if (finalAmount>= 5){
+            finalAmount = 5;
+        }
+
+        if(finalAmount>=0){
+
+        for(int i=0;i<finalAmount;i++){
+            imageView[i].setImageResource(R.drawable.star2);
+        }
+        for(int i= finalAmount;i<5;i++) {
+            imageView[i].setImageResource(R.drawable.star0);
+        }
+
+        }else{
+                for(int i= 0;i<5;i++) {
+                    imageView[i].setImageResource(R.drawable.star0);
+
+
+                }
+        }
+
+        if(finalAmount < 5&& finalAmount>=0){
+            switch (finalAmount){
+                case 0: imgbtn.setImageResource(R.drawable.emoji5);
+                case 1: imgbtn.setImageResource(R.drawable.emoji4);
+                case 2 : imgbtn.setImageResource(R.drawable.emoji3);
+                case 3 : imgbtn.setImageResource(R.drawable.emoji2);
+                case 4 : imgbtn.setImageResource(R.drawable.emoji1);
+
+            }
+        }else if(finalAmount>=5){
+            imgbtn.setImageResource(R.drawable.emoji1);
+        }else if(finalAmount<0){
+            imgbtn.setImageResource(R.drawable.emoji5);
+        }
     }
 
     @Override

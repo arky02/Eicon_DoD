@@ -19,6 +19,7 @@ package com.example.eicon_dod.customkeyboard;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -125,6 +126,8 @@ public class SoftKeyboard extends InputMethodService
     public static String word_bad;
     public static boolean isOkay = false;
     public static boolean isTextReady = false;
+    SharedPreferences sharedPreferences;
+    int plus=0;
 
     private InputMethodManager mInputMethodManager;
 
@@ -612,10 +615,18 @@ public class SoftKeyboard extends InputMethodService
 
                         Log.d("meaning_badword ", meaning_badword );
                         Log.d("word_bad ",word_bad );
-                        
+
+                        plus++;
+
                         AppDatabase db = AppDatabase.getInstance(this);
                         Data data = new Data(new Timestamp(System.currentTimeMillis()), word_bad);
                         db.dataDAO().insertData(data);
+
+                        sharedPreferences = getApplicationContext().getSharedPreferences("badPoint", MODE_PRIVATE);
+                        int badAmount = plus + sharedPreferences.getInt("badPoint",0);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putInt("badPoint", badAmount );
+                        edit.commit();
 
                         isOkay = true;
 
@@ -631,6 +642,7 @@ public class SoftKeyboard extends InputMethodService
 
 
             }
+
             sendKey(primaryCode);
             
             updateShiftKeyState(getCurrentInputEditorInfo());

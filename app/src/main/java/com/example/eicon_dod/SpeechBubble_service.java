@@ -50,6 +50,7 @@ public class SpeechBubble_service extends Service {
                         | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSLUCENT);
 
+        //여기
         params.gravity = Gravity.LEFT | Gravity.TOP;
         mView = inflate.inflate(R.layout.view_in_service, null);
 
