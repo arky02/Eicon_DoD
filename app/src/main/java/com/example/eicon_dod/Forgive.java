@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,8 +51,6 @@ public class Forgive extends AppCompatActivity {
         ArrayAdapter listadapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quoteList);
         spinner.setAdapter(listadapter);
 
-        textview1.setText(finalAmount.toString());
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -82,6 +81,8 @@ public class Forgive extends AppCompatActivity {
                 edit.commit();
                 String string1 = Integer.toString(5 - finalAmount);
                 textview1.setText("You should text " + string1 + " more sentences to be a STAR");
+            }else{
+                Toast.makeText(getApplicationContext(), "Spelling might be wrong. See Carefully or try writing again.", Toast.LENGTH_SHORT);
             }
 
         });

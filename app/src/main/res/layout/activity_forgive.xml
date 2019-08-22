@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Forgive"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt1"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:text="."
-        android:layout_marginTop="100dp"
-        android:textColor="#FF617FCA"
+        android:textColor="#5C6BC0"
         android:layout_gravity="center|top"/>
 
     <Spinner
@@ -43,14 +43,15 @@
             android:id="@+id/forgive_edt"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="OK,I will use good words"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:background="#6673BE"
             android:textColor="#FFFFFF"
-            android:id="@+id/btn_forgive"/>
+            android:id="@+id/btn_forgive"
+            android:layout_marginBottom="100dp"/>
 
 
     </LinearLayout>
