@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Helper {
     public static float countOccurrence(List<Data> data, Boolean filter, String date) {
@@ -61,7 +60,7 @@ public class Helper {
         Log.e("BUG", list.toString());
         HashMap<String, Integer> result = new HashMap<>();
         int listSize = list.size();
-        for(int i = 0; i < listSize; i++) {
+        for (int i = 0; i < listSize; i++) {
             Map.Entry<String, Integer> temp = list.get(i);
             result.put(temp.getKey(), temp.getValue());
         }

@@ -21,7 +21,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.eicon_dod.Database.AppDatabase;
 import com.example.eicon_dod.Database.Data;
-import com.example.eicon_dod.Database.TimestampConverter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -43,7 +42,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnChartGestureListener, OnChartValueSelectedListener {
