@@ -1,5 +1,7 @@
 package com.example.eicon_dod;
 
+import android.util.Log;
+
 import com.example.eicon_dod.Database.Data;
 
 import java.sql.Timestamp;
@@ -12,7 +14,6 @@ import java.util.Locale;
 public class Helper {
     public static float countOccurrence(List<Data> data, Boolean filter, String date) {
         float count = 0;
-
         if (filter) {
             SimpleDateFormat simpleDateformat = new SimpleDateFormat("E", Locale.US);
             for (Data temp : data) {

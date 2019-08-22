@@ -23,7 +23,6 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
