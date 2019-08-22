@@ -1,5 +1,7 @@
 package com.example.eicon_dod;
 
+import android.util.Log;
+
 import com.example.eicon_dod.Database.Data;
 
 import java.text.SimpleDateFormat;
@@ -11,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Helper {
     public static float countOccurrence(List<Data> data, Boolean filter, String date) {
@@ -45,7 +46,7 @@ public class Helper {
         return DataList;
     }
 
-    public static TreeMap<Integer, Map.Entry<String, Integer>> topThree(List<Data> data) {
+    public static HashMap<Integer, Map.Entry<String, Integer>> topThree(List<Data> data) {
         HashMap<String, Integer> countMap = new HashMap<>();
         for (Data temp : data) {
             Integer count = countMap.get(temp.word);
@@ -55,22 +56,27 @@ public class Helper {
 
         List<Map.Entry<String, Integer>> list = new LinkedList<>(countMap.entrySet());
 
-        Collections.sort(list, (o1, o2) -> (o1.getValue()).compareTo(o2.getValue()));
-
-        TreeMap<String, Integer> result = new TreeMap<>();
-        for (Map.Entry<String, Integer> temp : list) {
+        Collections.sort(list, (o1, o2) -> (o2.getValue().compareTo(o1.getValue())));
+        Log.e("BUG", list.toString());
+        HashMap<String, Integer> result = new HashMap<>();
+        int listSize = list.size();
+        for (int i = 0; i < listSize; i++) {
+            Map.Entry<String, Integer> temp = list.get(i);
             result.put(temp.getKey(), temp.getValue());
         }
 
+        Log.e("TEST", result.toString());
         return getSomeEntries(3, result);
     }
 
-    public static TreeMap<Integer, Map.Entry<String, Integer>> getSomeEntries(int max, TreeMap<String, Integer> source) {
+
+    public static HashMap<Integer, Map.Entry<String, Integer>> getSomeEntries(int max, HashMap<String, Integer> source) {
         int count = 0;
-        TreeMap<Integer, Map.Entry<String, Integer>> target = new TreeMap<>();
+        HashMap<Integer, Map.Entry<String, Integer>> target = new HashMap<>();
+
         for (Map.Entry<String, Integer> entry : source.entrySet()) {
             if (count >= max) break;
-
+            Log.e("TEST", entry.toString());
             target.put(count, entry);
             count++;
         }

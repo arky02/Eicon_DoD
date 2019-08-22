@@ -1,10 +1,10 @@
 package com.example.eicon_dod;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class FirstActivity extends AppCompatActivity {
         btnfirst = findViewById(R.id.btnfirst);
 
         btnfirst.setOnClickListener(view -> {
-            Intent mn = new Intent(getApplicationContext(),SpeechBubble_checkpermission.class);
+            Intent mn = new Intent(getApplicationContext(), SpeechBubble_checkpermission.class);
             startActivity(mn);
             finish();
         });

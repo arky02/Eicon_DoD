@@ -21,7 +21,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.eicon_dod.Database.AppDatabase;
 import com.example.eicon_dod.Database.Data;
-import com.example.eicon_dod.Database.TimestampConverter;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -40,9 +39,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnChartGestureListener, OnChartValueSelectedListener {
@@ -237,19 +236,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         xAxis.setGranularity(1);
         xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
 
-        TreeMap<Integer, Map.Entry<String, Integer>> TopThree = Helper.topThree(dbData);
-
+        HashMap<Integer, Map.Entry<String, Integer>> TopThree = Helper.topThree(dbData);
+        Log.e("BLAH", TopThree.toString());
         TextView firstText = findViewById(R.id.first);
-        Map.Entry<String, Integer> first = TopThree.get(1);
+        Map.Entry<String, Integer> first = TopThree.get(0);
         if (first == null) {
             firstText.setText(getString(R.string.first, "-", "-"));
         } else {
-            Log.e( "BLA",first.getValue().toString());
             firstText.setText(getString(R.string.first, first.getKey(), first.getValue().toString()));
         }
 
         TextView secondText = findViewById(R.id.second);
-        Map.Entry<String, Integer> second = TopThree.get(2);
+        Map.Entry<String, Integer> second = TopThree.get(1);
         if (second == null) {
             secondText.setText(getString(R.string.second, "-", "-"));
         } else {
@@ -257,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         TextView thirdText = findViewById(R.id.third);
-        Map.Entry<String, Integer> third = TopThree.get(3);
+        Map.Entry<String, Integer> third = TopThree.get(2);
         if (third == null) {
             thirdText.setText(getString(R.string.third, "-", "-"));
         } else {
@@ -277,7 +275,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("shared_profile", MODE_PRIVATE);
         String name = sharedPreferences.getString("name", "John Doe");
-        Log.e("NAV", name);
         TextView navName = findViewById(R.id.nav_name);
         navName.setText(name);
         getMenuInflater().inflate(R.menu.main, menu);

@@ -39,6 +39,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.1.0-alpha09'
     implementation 'androidx.mediarouter:mediarouter:1.0.0'
+    api 'com.google.guava:guava:28.0-android'
 
     def room_version = "2.2.0-alpha02"
 
