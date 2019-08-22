@@ -56,7 +56,7 @@ public class SpeechBubble_service extends Service {
         params.y = 20;
         mView = inflate.inflate(R.layout.view_in_service, null);
 
-        final TextView textView = (TextView) mView.findViewById(R.id.textView);
+        final TextView textView = mView.findViewById(R.id.textView);
         textView.setText(" \"" + bad_word + "\" " + "is a bad word! ");
         final Button bt = mView.findViewById(R.id.bt);
         bt.setOnClickListener(view -> {

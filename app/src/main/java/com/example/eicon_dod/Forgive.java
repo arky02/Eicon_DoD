@@ -46,7 +46,7 @@ public class Forgive extends AppCompatActivity {
         textview1.setText("You should text " + string + " more sentences to be a STAR");
 
 
-        String quoteList[] = {"A word of kindness is better than a fat pie", "A soft answer turneth away wrath.", "Discretion is the greater part of valor.", "The right word is always a power, and communicates its definiteness to our action.", "Words are soldiers of fortune, hired by different ideas.", "By words we learn thoughts, and by thoughts we learn life.", "For me, words are a form of action, capable of influencing change. Their articulation represents a complete, lived experience", "Good words are worth much, and cost little"};
+        String[] quoteList = {"A word of kindness is better than a fat pie", "A soft answer turneth away wrath.", "Discretion is the greater part of valor.", "The right word is always a power, and communicates its definiteness to our action.", "Words are soldiers of fortune, hired by different ideas.", "By words we learn thoughts, and by thoughts we learn life.", "For me, words are a form of action, capable of influencing change. Their articulation represents a complete, lived experience", "Good words are worth much, and cost little"};
         ArrayAdapter listadapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quoteList);
         spinner.setAdapter(listadapter);
 

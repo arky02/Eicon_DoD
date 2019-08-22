@@ -89,7 +89,7 @@ public class GraphActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
-        mChart = (LineChart) findViewById(R.id.Linechart);
+        mChart = findViewById(R.id.Linechart);
 
         mChart.setOnChartGestureListener(GraphActivity.this);
         mChart.setOnChartValueSelectedListener(GraphActivity.this);
