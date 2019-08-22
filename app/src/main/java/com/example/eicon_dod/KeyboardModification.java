@@ -1,16 +1,14 @@
 package com.example.eicon_dod;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.eicon_dod.customkeyboard.ImePreferences;
-import com.example.eicon_dod.customkeyboard.LatinKeyboard;
-import com.example.eicon_dod.customkeyboard.SoftKeyboard;
 
 public class KeyboardModification extends AppCompatActivity {
 

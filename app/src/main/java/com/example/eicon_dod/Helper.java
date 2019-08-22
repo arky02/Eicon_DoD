@@ -1,7 +1,5 @@
 package com.example.eicon_dod;
 
-import android.util.Log;
-
 import com.example.eicon_dod.Database.Data;
 
 import java.text.SimpleDateFormat;
