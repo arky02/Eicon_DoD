@@ -86,7 +86,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:text="You ARE an upright STAR!"
-        android:textColor="#FF7043"
+        android:textColor="#FF4343"
         android:textSize="25dp"
         android:textStyle="bold" />
 

@@ -34,8 +34,8 @@ public class Tutorial extends AppCompatActivity {
                 case 4 :imgView.setImageResource(R.drawable.to3);
                 break;
                 case 5: imgView.setImageResource(R.drawable.to5);
-                    finish();
                 break;
+                case 6: finish(); break;
             }
         });
     }
