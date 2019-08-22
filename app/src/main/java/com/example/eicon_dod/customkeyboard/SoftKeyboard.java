@@ -605,9 +605,8 @@ public class SoftKeyboard extends InputMethodService
             // Handle separator
             if (mComposing.length() > 0) {
 
-                String bad_word[] = {"sissy", "maiden", "whipped", "jipped", "gypped", "bugger", "lame", "retarded", "colored", "OCD", "derp", "crazy", "insane", "tranny", "exotic", "ghetto", "uppity", "miss", "mrs", "chairman", "clergyman", "foreman", "mankind", "negro", "niggar", "faggot", "fag", "bap", "bitch", "jap", "coonass", "dago", "heime", "heimy", "himy", "honky", "nappy", "nigger", "kraut", "hooligan", "vandal", "barbarian", "cannibal", "gyp", "eskimo", "spaz", "moron", "hysteria", "spinster"};
-
-                String word_meaning[] = {sis, mai, whi, jipgyp, jipgyp, bug, Lame, Retarded, colored, OCD, Derp, crazy, insane, tranny, exotic, ghetto, uppityy, miss, mrs, chairman, clergyman, foreman, mankind, negro, negro, faggot, faggot, bap, bitch, jap, coonass, dago, heime, heime, heime, honky, nappy, nigger, kraut, hooligan, vandal, barbarian, cannibal, gyp, eskimo, spaz, moron, hysteria, spinster};
+                String[] bad_word = {"sissy", "maiden", "whipped", "jipped", "gypped", "bugger", "lame", "retarded", "colored", "OCD", "derp", "crazy", "insane", "tranny", "exotic", "ghetto", "uppity", "miss", "mrs", "chairman", "clergyman", "foreman", "mankind", "negro", "niggar", "faggot", "fag", "bap", "bitch", "jap", "coonass", "dago", "heime", "heimy", "himy", "honky", "nappy", "nigger", "kraut", "hooligan", "vandal", "barbarian", "cannibal", "gyp", "eskimo", "spaz", "moron", "hysteria", "spinster"};
+                String[] word_meaning = {sis, mai, whi, jipgyp, jipgyp, bug, Lame, Retarded, colored, OCD, Derp, crazy, insane, tranny, exotic, ghetto, uppityy, miss, mrs, chairman, clergyman, foreman, mankind, negro, negro, faggot, faggot, bap, bitch, jap, coonass, dago, heime, heime, heime, honky, nappy, nigger, kraut, hooligan, vandal, barbarian, cannibal, gyp, eskimo, spaz, moron, hysteria, spinster};
                 for (int i = 0; i < bad_word.length; i++) {
                     if (mComposing.toString().compareToIgnoreCase(bad_word[i]) == 0) {
                         meaning_badword = word_meaning[i];
