@@ -2,8 +2,8 @@ DoD - "Dig Out Discrimination!"
 =========
 ### KeyBoard Application that sensors discriminative(or may be inappropriative) words while typing - created by Android studio.
 
-> For those who are using discriminatory words without noticing...<br/>
-> For those who wants to improve their language...<br/>
+🙍 For those who are using discriminatory words without noticing...<br/>
+🙍 For those who wants to improve their language...<br/>
 
 ### 🌟 Here’s a keyboard app that will dig out discrimination in you !<br/>
 (Daily-Statistics provided everyday)<br/>
