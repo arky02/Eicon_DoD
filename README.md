@@ -9,7 +9,7 @@ DoD - "Dig Out Discrimination!"
 (Daily-Statistics provided everyday)<br/>
 (Words you use are who you are)<br/>
 
-## Award and Honors :
+## 🏆 Award and Honors :
 > One of the Winner Team of 'e-ICON World Contest 2019'
 
 # General Info
