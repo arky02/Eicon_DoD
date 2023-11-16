@@ -6,8 +6,8 @@ DoD - "Dig Out Discrimination!"
 🙍 For those who wants to improve their language...<br/>
 
 ### 🌟 Here’s a keyboard app that will dig out discrimination in you !<br/>
-(Daily-Statistics provided everyday)<br/>
-(Words you use are who you are)<br/>
+(Daily-Statistics provided everyday !)<br/>
+( "Words you use are who you are" )<br/>
 
 ## 🏆 Award and Honors :
 > One of the Winner Team of 'e-ICON World Contest 2019'
