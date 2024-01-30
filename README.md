@@ -9,7 +9,11 @@ DoD - "Dig Out Discrimination!"
 - Daily-Statistics provided everyday !<br/>
 - "Words you use are who you are" <br/>
 
-### Team Leader: KiYeon Kim(Develop, Design, Product Manage), Team Member: JoHyeon Kim(Design, Product Manage), Nyp Palapong(Product Manage), Possawat Mark Suksai(Develop, Product Manage)
+### Team Leader: 
+> Kiyeon Kim (Develop, Design, Product Manage)
+
+### Team Member: 
+> Possawat Mark Suksai (Develop, Product Manage), Johyeon Kim (Design, Product Manage), Nyp Palapong (Product Manage)
 
 ## 🏆 Award and Honors :
 > One of the Winner Team of 'e-ICON World Contest 2019'
